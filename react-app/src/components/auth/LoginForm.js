@@ -18,9 +18,9 @@ const LoginForm = () => {
     }
   };
 
-  // const demoUser = async () => {
-  //   await dispatch(login("demo@", "password"));
-  // };
+  const demoUser = async () => {
+    await dispatch(login("demo@aa.io", "password"));
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
