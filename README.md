@@ -117,7 +117,7 @@ variables.
 {NAME_OF_HEROKU_APP} with your own tag:
 
    ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
+   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} ..
    ```
 
 2. Tag your app with the url for your apps registry. Make sure to use the name
