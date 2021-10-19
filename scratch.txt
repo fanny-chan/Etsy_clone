@@ -1,0 +1,2 @@
+CREATE DATABASE etsy_clone_db;
+CREATE USER etsy_clone_user WITH password 'password';
