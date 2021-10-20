@@ -3,10 +3,10 @@ from app.models import db, Product
 def seed_products():
     product1 = Product(
     seller_id=1,
-    title="Handmade Initial Name Necklace",
+    title="Handmade Initial Name Necklace- Nameplate Necklace- Sideways Initial Necklace-Spaced Letter Necklace-Choker Letter Necklace-Mothers Day Gift",
     price="23.09",
     description=
-    "14K Gold-Plated necklace is made by bonding a solid layer of 14K"
+    "14K Gold-Plated necklace is made by bonding a solid layer of 14K gold on top of another silver, but this layer is 1000 - 10,000 times thicker than gold plating, resulting in a durable, long-lasting product that looks gorgeous like solid gold.         Make your loved ones happy with Gold-Plated Necklace ♥"
     )
     product2 = Product(
     seller_id=2,
