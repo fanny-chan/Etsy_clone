@@ -7,19 +7,22 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Numeric, nullable=False)
     description = db.Column(db.String(1000), nullable=False)
 
     # relationships
     # one to many
     seller = db.relationship("User", back_populates="products")
 
-    # many to many
+    # many to many carts -- products
     carts = db.relationship(
         "Cart",
         secondary=cart_products,
         back_populates="products"
     )
+
+    # one to many product-- reviews
+    reviews = db.relationship("Review", back_populates="product")
 
 def to_dict(self):
     return {
