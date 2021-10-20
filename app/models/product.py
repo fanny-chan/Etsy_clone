@@ -12,7 +12,7 @@ class Product(db.Model):
 
     # relationships
     # one to many
-    seller = db.relationship("User", back_populates="products")
+    user = db.relationship("User", back_populates="products")
 
     # many to many carts -- products
     carts = db.relationship(
