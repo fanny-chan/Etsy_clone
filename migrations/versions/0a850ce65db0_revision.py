@@ -17,14 +17,14 @@ depends_on = None
 
 
 def upgrade():
-    op.alter_column('reviews','content',
+    op.alter_column('products','title',
                existing_type=sa.String(length=100),
                type_=sa.String(length=500),
                existing_nullable=False)
 
 
 def downgrade():
-    op.alter_column('reviews','content',
+    op.alter_column('products','title',
                existing_type=sa.String(length=500),
                type_=sa.String(length=100),
                existing_nullable=False)
