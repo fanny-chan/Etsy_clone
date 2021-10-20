@@ -17,14 +17,8 @@ depends_on = None
 
 
 def upgrade():
-    op.alter_column('products','title',
-               existing_type=sa.String(length=100),
-               type_=sa.String(length=500),
-               existing_nullable=False)
+    op.add_column('products', sa.Column('title', sa.VARCHAR(length=500), autoincrement=False, nullable=False))
 
 
 def downgrade():
-    op.alter_column('products','title',
-               existing_type=sa.String(length=500),
-               type_=sa.String(length=100),
-               existing_nullable=False)
+    op.drop_column('products', 'title')
