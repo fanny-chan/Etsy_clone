@@ -6,7 +6,7 @@ class Product(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(500), nullable=False)
     price = db.Column(db.Numeric, nullable=False)
     description = db.Column(db.String(1000), nullable=False)
 
