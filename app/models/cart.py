@@ -17,7 +17,7 @@ cart_products = db.Table(
 )
 
 class Cart(db.Model):
-    __table__ = 'carts'
+    __tablename__ = 'carts'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -25,10 +25,10 @@ class Cart(db.Model):
     # created_at = db.Column(db.DateTime, server_default=text('now()'))
     # updated_at = db.Column(db.DateTime, server_default=text('now()'))
 
-
+    # one to one user -- cart
     user = db.relationship("User", back_populates="cart")
 
-    product = db.relationship("Product". back_populates="carts")
+    # product = db.relationship("Product". back_populates="carts")
 
     # many to many
     products = db.relationship(
@@ -40,8 +40,9 @@ class Cart(db.Model):
 
 
     def to_dict(self):
-        return(
+        return {
             'id': self.id,
             'user_id': self.user_id,
             'product': self.product
-        )
+        }
+        
