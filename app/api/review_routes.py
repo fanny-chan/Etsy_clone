@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
-from app.models import db
+from app.models import db, Review
 from app.models.product import Product
 
 
-review_routes = Blueprint('reviews', __name__, url_prefix='/reviews')
+
+
+review_routes = Blueprint('reviews', __name__)
 
 # get all reviews
 @review_routes.route('/')

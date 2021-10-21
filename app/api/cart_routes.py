@@ -5,7 +5,7 @@ from flask_wtf.csrf import generate_csrf
 from app.forms.add_product_to_cart_form import addProductToCartForm
 from flask_login import current_user
 
-cart_routes = Blueprint('carts', __name__, url_prefix='/cart_items')
+cart_routes = Blueprint('carts', __name__)
 
 # get all products in cart
 
