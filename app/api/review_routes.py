@@ -12,7 +12,7 @@ def get_reviews():
     reviews = Review.query.all()
     return {review.id:review.to_dict() for review in reviews}
 
-# specific comment
+# specific review
 @review_routes.route('/<int:id>')
 def get_one_review():
     reviews = Review.query.filter(Review.product_id == id).all()
