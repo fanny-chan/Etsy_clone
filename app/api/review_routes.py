@@ -14,7 +14,7 @@ def get_reviews():
     reviews = Review.query.all()
     return {review.id:review.to_dict() for review in reviews}
 
-# specific comment
+# specific review
 @review_routes.route('/<int:id>')
 def get_one_review():
     reviews = Review.query.filter(Review.product_id == id).all()
@@ -22,13 +22,13 @@ def get_one_review():
 # create a review 
 @review_routes.route('/new', methods=['POST'])
 @login_required
-def create_a_review:
+def create_a_review():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         review = Review(
             user_id = current_user.id,
             product_id = product_id,
-            content  = form.data['content']
+            content  = form.data['content'],
             rating = form.data[rating]
         )
         db.session.add(review)
