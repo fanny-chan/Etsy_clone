@@ -15,6 +15,7 @@ def get_cart_items():
     return {cart.id:cart.to_dict() for product in carts}
 
 # add item to cart
+
 @cart_routes.route('/add-product', methods=['POST'])
 def add_cart_item(id):
     form = addProductToCartForm()
