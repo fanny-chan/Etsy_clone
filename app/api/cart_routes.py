@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from app.models import db
 from app.models.cart import Cart
 
-cart_routes = Blueprint('cart_item', __name__, url_prefix='/cart_items')
+cart_routes = Blueprint('carts', __name__)
 
 # get all products in cart
 
