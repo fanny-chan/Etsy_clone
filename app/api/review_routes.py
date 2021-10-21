@@ -20,13 +20,13 @@ def get_one_review():
 # create a review 
 @review_routes.route('/new', methods=['POST'])
 @login_required
-def create_a_review:
+def create_a_review():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         review = Review(
             user_id = current_user.id,
             product_id = product_id,
-            content  = form.data['content']
+            content  = form.data['content'],
             rating = form.data[rating]
         )
         db.session.add(review)
