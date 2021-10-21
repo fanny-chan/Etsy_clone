@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.models import db, Review
 from app.models.product import Product
+from app.forms import edit_review_form
 
 
 
@@ -16,8 +17,9 @@ def get_reviews():
 
 # specific review
 @review_routes.route('/<int:id>')
-def get_one_review():
-    reviews = Review.query.filter(Review.product_id == id).all()
+def get_one_review(id):
+    review = Review.query.filter(Review.id == id).first()
+    return review.to_dict()
 
 # create a review 
 @review_routes.route('/new', methods=['POST'])
@@ -29,7 +31,7 @@ def create_a_review():
             user_id = current_user.id,
             product_id = product_id,
             content  = form.data['content'],
-            rating = form.data[rating]
+            rating = form.data['rating']
         )
         db.session.add(review)
         db.session.commit()
@@ -41,8 +43,10 @@ def create_a_review():
 @review_routes.route('/edit/<int:id>', methods =['PATCH'])
 @login_required
 def edit_a_review(id):
+    form = EditReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+        #edited_review = Review.query.filter(Review.id == id).first()
         edited_review = Review.query.get(id)
         if int(current_user.id) == int(edited_review.id):
             edited_review.content = form.data['content']
@@ -50,7 +54,7 @@ def edit_a_review(id):
         db.session.commit()
         return review.to_dict()
     else:
-        return "Sorry, you do not own this comment"
+        return "Sorry, you do not own this review"
 
 # delete a specific review
 @review_routes.route('/delete/<int:id>', methods=['DELETE'])
