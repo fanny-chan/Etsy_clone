@@ -34,7 +34,7 @@ def edit_cart_item(id):
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
-        cart = Cart.query.filter_by(product_id == id , user_id = current_user.id)
+        cart = Cart.query.filter_by(product_id = id , user_id = current_user.id)
 
         cart.quantity = form.data['quantity']
 
