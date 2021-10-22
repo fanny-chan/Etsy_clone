@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import Header from './components/home/Header';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,6 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <Header />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
