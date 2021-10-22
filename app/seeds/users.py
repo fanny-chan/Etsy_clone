@@ -6,30 +6,42 @@ def seed_users():
     demo = User(
         first_name='Demo',
         last_name='lition',      
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo8475', email='demo@aa.io', password='password')
     marnie = User(
-        first_name='marnie',
-        last_name='lition',
-        username='marnie', email='marnie@aa.io', password='password')
+        first_name='Marnie',
+        last_name='Lee',
+        username='Marnie3424', email='marnie@aa.io', password='password')
     mary = User(
-        first_name='mary',
-        last_name='lition',
-        username='mary', email='mary@aa.io', password='password')
+        first_name='Mary',
+        last_name='Williams',
+        username='Mary0247', email='mary@aa.io', password='password')
     joanne = User(
         first_name='Joanne',
-        last_name='lition',
-        username='joanne', email='joanne@aa.io', password='password'
+        last_name='Taylor',
+        username='Joanne3829', email='joanne@aa.io', password='password'
     )
     hannah = User(
         first_name='Hannah',
-        last_name='lition',
-        username='hannah', email='hannah@aa.io', password='password'
+        last_name='Campbell',
+        username='Hannah8294', email='hannah@aa.io', password='password'
     )
     jasmine = User(
         first_name='Jasmine',
-        last_name='lition',
-        username='jasmine', email='jasmine@aa.io', password='password'
+        last_name='Cassidy',
+        username='Jasmine2947', email='jasmine@aa.io', password='password'
     )
+    chrissy = User(
+        first_name='Chrissy',
+        last_name='Chan',
+        username='Chrissy2095', email='chrissy@aa.io', password='password'
+    )
+    ann = User(
+        first_name='Ann',
+        last_name='Halls',
+        username='Ann8392', email='ann@aa.io', password='password'
+    )
+    
+    
 
     db.session.add(demo)
     db.session.add(marnie)
@@ -37,6 +49,8 @@ def seed_users():
     db.session.add(joanne)
     db.session.add(hannah)
     db.session.add(jasmine)
+    db.session.add(chrissy)
+    db.session.add(ann)
 
     db.session.commit()
 
