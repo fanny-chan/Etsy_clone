@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from app.models import db
 from app.models import Cart, Product
 from flask_wtf.csrf import generate_csrf
-from app.forms.add_product_to_cart_form import addProductToCartForm
+from app.forms import addProductToCartForm
 from flask_login import current_user
 
 cart_routes = Blueprint('carts', __name__)
@@ -28,13 +28,13 @@ def add_cart_item(id):
         db.session.commit()
         return new_cart_item.to_dict()
 
-#edit a product
+#edit a cart_product
 @cart_routes.route('/edit-product', methods=['PATCH'])
 def edit_cart_item(id):
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
-        cart = Cart.query.filter_by(product_id == id , user_id = current_user.id)
+        cart = Cart.query.filter_by(product_id = id , user_id = current_user.id)
 
         cart.quantity = form.data['quantity']
 

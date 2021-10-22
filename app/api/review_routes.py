@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.models import db, Review
 from app.models.product import Product
-from app.forms import edit_review_form
+from app.forms import EditReviewForm
 
 
 
