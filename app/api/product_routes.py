@@ -21,9 +21,6 @@ def get_products():
     print('------1233-----', products)
     print('---HERE---')
     return {product.id:product.to_dict() for product in products}
-<<<<<<< Updated upstream
-    
-=======
 
 # get specific product
 @product_routes.route('/<int:id>')
@@ -81,4 +78,3 @@ def delete_product(id):
     db.session.delete(delete_product)
     db.session.commit()
     return delete_product.to_dict()
->>>>>>> Stashed changes
