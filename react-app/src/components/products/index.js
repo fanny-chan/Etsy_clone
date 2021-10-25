@@ -74,9 +74,9 @@ export const ProductDisplay = () => {
                 return (
                     <div key={reviews.id}
                     className="review-username">
-                        <div className="review-username"> {reviews.user.username && reviews.created_at}
+                        <div className="review-username"> {reviews?.user?.username && reviews?.created_at}
                         </div>
-                        <div className="review-content"> {reviews.content}
+                        <div className="review-content"> {reviews?.content}
                         <input
                         className="review-input"
                         name={reviews.id}
@@ -99,6 +99,11 @@ export const ProductDisplay = () => {
                         onClick={updateReview}
                         >Edit Review
                         </button>
+                        
+
+                    </div>
+                )
+            })}
                         <textarea
                         className="new-review"
                         style={{minHeight:"50px"}}
@@ -113,11 +118,6 @@ export const ProductDisplay = () => {
                         style={{heigh:"30px"}}>
                         Add review
                         </button>
-                        
-
-                    </div>
-                )
-            })}
             </div>
             
         </div>
