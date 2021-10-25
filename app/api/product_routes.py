@@ -1,12 +1,9 @@
 from flask import Blueprint, render_template, redirect, request
-from app.models import db
-from app.models.product import Product
 from flask_login import current_user,login_required
 from app.models import db, Product
 from flask_wtf.csrf import generate_csrf
-from app.forms import createNewProductForm, editProductForm
+from app.forms import editProductForm
 from flask_login import current_user, login_required
-
 
 
 product_routes = Blueprint('products', __name__)
