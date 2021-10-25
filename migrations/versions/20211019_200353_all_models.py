@@ -52,8 +52,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('cart_id', 'product_id')
     )
-    op.add_column('users', sa.Column('first_name', sa.String(length=255), nullable=False))
-    op.add_column('users', sa.Column('last_name', sa.String(length=255), nullable=False))
     # ### end Alembic commands ###
 
 
