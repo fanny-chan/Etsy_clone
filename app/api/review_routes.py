@@ -13,6 +13,7 @@ review_routes = Blueprint('reviews', __name__)
 @review_routes.route('/')
 def get_reviews():
     reviews = Review.query.all()
+    print('-----REVIEW----', type(reviews))
     return {review.id:review.to_dict() for review in reviews}
 
 # specific review

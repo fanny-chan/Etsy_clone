@@ -1,20 +1,35 @@
 from flask import Blueprint, render_template, redirect, request
+from app.models import db
+from app.models.product import Product
 from flask_login import current_user,login_required
 from app.models import db, Product
-from app.models.product import Product
-fromm app.forms import createNewProductForm, editProductForm
+from flask_wtf.csrf import generate_csrf
+from app.forms import createNewProductForm, editProductForm
+from flask_login import current_user, login_required
 
 
-product_routes = Blueprint('products', __name__, url_prefix='/products')
+
+product_routes = Blueprint('products', __name__)
 
 # get all products
 @product_routes.route('/')
 def get_products():
     products = Product.query.all()
-
+    print('------1233-----', products)
+    print('---HERE---')
     return {product.id:product.to_dict() for product in products}
 
 # get specific product
+
+@product_routes.route('/<int:id>')
+def get_a_product(id):
+    product = Product.query.get(id)
+    print('------ONE-----', type(product))
+    return product.to_dict()
+
+#create a product
+@product_routes.route('/new', methods=['POST'])
+
 @product_routes.route('</int:id>')
 def get_a_product():
     product = Product.query.filter(Product.id == id).first()
@@ -31,7 +46,7 @@ def create_new_product():
             user_id = form.data['user_id'],
             title = form.data['title'],
             description = form.data['description'],
-            price = form.data['price']
+            price = form.data['price'],
             quantity_available = form.data[quantity_available]
         )
         db.session.add(add_product)
@@ -41,10 +56,12 @@ def create_new_product():
     else:
         return form.errors
 
-@product_routes.routes('/edit/<int:id>', methods=['PATCH'])
+
+@product_routes.route('/edit/<int:id>', methods=['PATCH'])
 @login_required
 def edit_product(id):
-    form = editProductForm():
+    form = editProductForm()
+
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         product = Product.query.filter(Product.id == id).first()
@@ -60,8 +77,7 @@ def edit_product(id):
         return form.errors
     
 # delete a product
-
-@product_routes.routes('/delete/<int:id>', methods=['PATCH'])
+@product_routes.route('/delete/<int:id>', methods=['PATCH'])
 @login_required
 def delete_product(id):
     #deleted_product = Product.query.filter_by(product_id == id).first()
@@ -69,3 +85,4 @@ def delete_product(id):
     db.session.delete(delete_product)
     db.session.commit()
     return delete_product.to_dict()
+
