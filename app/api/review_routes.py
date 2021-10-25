@@ -46,14 +46,17 @@ def create_a_review():
 def edit_a_review(id):
     form = EditReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    print("\n\n", "FORM VALIDATED:" ,form.validate_on_submit(), "\n\n")
+    print("\n\n", "DATA:" ,form.data, "\n\n")
     if form.validate_on_submit():
         #edited_review = Review.query.filter(Review.id == id).first()
         edited_review = Review.query.get(id)
-        if int(current_user.id) == int(edited_review.id):
-            edited_review.content = form.data['content']
+        print("\n\n", "EDITED_REVIEW:" ,edited_review, "\n\n")
+        edited_review.content = form.data['content']
             # Include the updated + created at? to show time review was made
         db.session.commit()
-        return review.to_dict()
+        print("\n\n", "EDITTED_REVIEW.TODICT:" ,edited_review.to_dict(), "\n\n")
+        return edited_review.to_dict()
     else:
         return "Sorry, you do not own this review"
 

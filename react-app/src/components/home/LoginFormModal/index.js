@@ -7,7 +7,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <button id="loginModal" class="login_button" onClick={() => setShowModal(true)}>Log In</button>
+      <button id="loginModal" className="login_button" onClick={() => setShowModal(true)}>Log In</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />

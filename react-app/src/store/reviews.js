@@ -64,6 +64,7 @@ export const thunkEditReviewDetails = reviewDetails => async(dispatch) => {
     console.log('this is thunk ======>', reviewDetails)
     const response = await fetch (`/api/reviews/edit/${reviewDetails.id}`, {
         method: 'PATCH',
+        headers:{'content-type':'application/json'},
         body: JSON.stringify(reviewDetails)
     })
     if (response.ok) {
@@ -71,6 +72,8 @@ export const thunkEditReviewDetails = reviewDetails => async(dispatch) => {
         console.log('this is response object', editedReviewObj)
         dispatch(editReview(editedReviewObj))
         return editedReviewObj
+    } else {
+        console.log('issue on backend')
     }
 }
 // delete a reviews thunk
@@ -101,7 +104,8 @@ export default function reviewReducer(state = initialState, action) {
             return newState
 
         case EDIT_REVIEWS:
-            newState[action.newReviewObj.id] = action.newReviewObj
+            console.log(action.editReviewObj)
+            newState[action.editReviewObj.id] = action.editReviewObj
             return newState
             
         case DELETE_REVIEWS:

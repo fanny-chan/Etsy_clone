@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Header from './components/home/Header';
 import ProductDisplay from './components/products';
 import Reviews from './components/reviews';
+import AllProductDisplay from './components/ProductDisplay';
 
 
 function App() {
@@ -51,8 +52,8 @@ function App() {
         <ProtectedRoute path='/products/:productId'>
           <ProductDisplay />
         </ProtectedRoute>
-        <ProtectedRoute path='/reviews'>
-          <Reviews/>
+        <ProtectedRoute path='/products'>
+          <AllProductDisplay/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
