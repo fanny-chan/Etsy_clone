@@ -1,5 +1,4 @@
 from .db import db
-
 # from app.models.cart import cart_products
 from datetime import datetime
 
