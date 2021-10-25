@@ -2,7 +2,7 @@ import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {thunkGetAllProducts, thunkGetProductDetails } from '../../store/products';
-import { thunkGetAllReviews,thunkDeleteReview} from '../../store/reviews';
+import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 
 
 export const ProductDisplay = () => {
@@ -43,15 +43,25 @@ export const ProductDisplay = () => {
 
     const postReview = async (e) => {
         e.preventDefault();
-
         let newReview = {
             user_id: sessionUser?.id,
             product_id:product.id,
             content:reviewContent,
             rating:reviewRating
-        };
-
+        }; 
+        let createdReview = await dispatch(thunkCreateReview(newReview))
     }
+    const updateContent = (e) => {
+        setReviewContent(e.target.value);
+    }
+    const updateReview = async (e) => {
+        e.preventDefault();
+        let updatedContent = {
+            id: e.target.value,
+            content:reviewContent
+        };
+        dispatch(thunkEditReviewDetails(updatedContent))
+    };
     return (
     <>
         <div className="product-page-wrapper">
@@ -67,6 +77,13 @@ export const ProductDisplay = () => {
                         <div className="review-username"> {reviews.user.username && reviews.created_at}
                         </div>
                         <div className="review-content"> {reviews.content}
+                        <input
+                        className="review-input"
+                        name={reviews.id}
+                        type="text"
+                        placeholder="edit your review"
+                        // onChange={}
+                        />
                         </div>
                         <div className='delete-review'>
                         <button 
@@ -76,6 +93,27 @@ export const ProductDisplay = () => {
                         >Delete Review
                         </button>
                         </div>
+                        <button 
+                        className="edit-review"
+                        value={reviews.id}
+                        onClick={updateReview}
+                        >Edit Review
+                        </button>
+                        <textarea
+                        className="new-review"
+                        style={{minHeight:"50px"}}
+                        placeholder="Add a review"
+                        value={reviewContent}
+                        onChange={(e) => setReviewContent(e.target.value)}
+                        />
+                        <button
+                        onClick={postReview}
+                        className="submit-review"
+                        type="submit"
+                        style={{heigh:"30px"}}>
+                        Add review
+                        </button>
+                        
 
                     </div>
                 )
