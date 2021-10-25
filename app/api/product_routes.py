@@ -24,16 +24,14 @@ def get_a_product(id):
     print('------ONE-----', type(product))
     return product.to_dict()
 
+
+# @product_routes.route('</int:id>')
+# def get_a_product():
+#     product = Product.query.filter(Product.id == id).first()
+#     return product.to_dict()
+
 #create a product
 @product_routes.route('/new', methods=['POST'])
-
-@product_routes.route('</int:id>')
-def get_a_product():
-    product = Product.query.filter(Product.id == id).first()
-    return product.to_dict()
-
-#create a product
-@product_routes.routes('/new', methods=['POST'])
 @login_required
 def create_new_product():
     form =createNewProductForm()
