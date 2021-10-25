@@ -61,7 +61,7 @@ export const thunkGetProductDetails = (id) => async (dispatch) => {
 }
 
 export const thunkCreateProduct = productDetails => async (dispatch) => {
-    const response = await fetch('/api/boards/new', {
+    const response = await fetch('/api/products/new', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'

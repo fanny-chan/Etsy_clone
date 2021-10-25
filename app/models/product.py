@@ -9,7 +9,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(500), nullable=False)
-    price = db.Column(db.Numeric, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     quantity_available = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
@@ -30,16 +30,16 @@ class Product(db.Model):
     reviews = db.relationship("Review", back_populates="product")
 
 
-def to_dict(self):
-    return {
-        'id':self.id,
-        'seller_id': self.user_id,
-        'title': self.title,
-        'price': self.price,
-        'description': self.description,
-        'quantity_available': self.quantity_available,
-        'created_at':self.created_at,
-        'updated_at':self.created_at,
+    def to_dict(self):
+        return {
+            'id':self.id,
+            'seller_id': self.seller_id,
+            'title': self.title,
+            'price': self.price,
+            'description': self.description,
+            'quantity_available': self.quantity_available,
+            'created_at':self.created_at,
+            'updated_at':self.created_at,
 
-    }
+        }
     
