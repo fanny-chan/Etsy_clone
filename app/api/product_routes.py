@@ -12,8 +12,6 @@ product_routes = Blueprint('products', __name__)
 @product_routes.route('/')
 def get_products():
     products = Product.query.all()
-    print('------1233-----', products)
-    print('---HERE---')
     return {product.id:product.to_dict() for product in products}
 
 # get specific product

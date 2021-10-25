@@ -13,6 +13,9 @@ export const ProductDisplay = () => {
     console.log(reviews)
     console.log('-------%%%%_1------',product)
     const sessionUser = useSelector((state) => state.session.user);
+    const user_id = useSelector((state) => {
+        return state.session.user?.id
+    })
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
 
@@ -34,6 +37,8 @@ export const ProductDisplay = () => {
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
     console.log('----frontend---', reviewsSection)
+    const specificReview = reviewsSection.filter((review) => review.product_id === product.id )
+    console.log('----specific----', specificReview)
     // const productReviews = reviewsSection.map()
 
     const handleDeleteReview = (e) => {
@@ -51,9 +56,14 @@ export const ProductDisplay = () => {
         }; 
         let createdReview = await dispatch(thunkCreateReview(newReview))
     }
+
     const updateContent = (e) => {
         setReviewContent(e.target.value);
-    }
+
+        // let review = specificReview.filter((item) => item.id.toString() === e.target.name)
+    };
+    const updateRating = (e) => setReviewRating(e.target.value)
+
     const updateReview = async (e) => {
         e.preventDefault();
         let updatedContent = {
@@ -70,24 +80,26 @@ export const ProductDisplay = () => {
                 <h2 className="review-title">WE'RE HERE</h2>
             </div>
             <div className="comments">
-            {reviewsSection.map((reviews) => {
+            {specificReview.map((review) => {
                 return (
-                    <div key={reviews.id}
+                    <div key={review.id}
                     className="review-username">
-                        <div className="review-username"> {reviews?.user?.username && reviews?.created_at}
+                        <div className="review-username"> {review?.user?.username}
                         </div>
-                        <div className="review-content"> {reviews?.content}
+                        <div>{review?.created_at}</div>
+                        <div>{review?.rating}</div>
+                        <div className="review-content"> {review?.content}
                         <input
                         className="review-input"
-                        name={reviews.id}
+                        name={review.id}
                         type="text"
                         placeholder="edit your review"
-                        // onChange={}
+                        onChange={updateContent}
                         />
                         </div>
                         <div className='delete-review'>
                         <button 
-                        value={reviews.id}
+                        value={review.id}
                         className='delete-review-btn'
                         onClick={handleDeleteReview}
                         >Delete Review
@@ -95,16 +107,37 @@ export const ProductDisplay = () => {
                         </div>
                         <button 
                         className="edit-review"
-                        value={reviews.id}
+                        value={review.id}
                         onClick={updateReview}
                         >Edit Review
                         </button>
-                        
-
+                    
                     </div>
                 )
             })}
-                        <textarea
+                    <div className="new-review">
+                        <input
+                            type="hidden"
+                            min="1"
+                            required
+                            value={user_id}
+                            />
+                        <input
+                            type="hidden"
+                            min="1"
+                            required
+                            value={productId}
+                            />
+                            <select 
+                            onChange={updateRating}
+                            className="review-rating">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <textArea
                         className="new-review"
                         style={{minHeight:"50px"}}
                         placeholder="Add a review"
@@ -112,12 +145,14 @@ export const ProductDisplay = () => {
                         onChange={(e) => setReviewContent(e.target.value)}
                         />
                         <button
-                        onClick={postReview}
-                        className="submit-review"
-                        type="submit"
-                        style={{heigh:"30px"}}>
-                        Add review
+                            onClick={postReview}
+                            className="submit-review-btn"
+                            type="submit"
+                            style={{height:"30px"}}
+                        >
+                            Add review
                         </button>
+                    </div>
             </div>
             
         </div>

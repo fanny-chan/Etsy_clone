@@ -30,7 +30,7 @@ def create_a_review():
     if form.validate_on_submit():
         review = Review(
             user_id = current_user.id,
-            product_id = product_id,
+            product_id = form.data['product_id'],
             content  = form.data['content'],
             rating = form.data['rating']
         )
