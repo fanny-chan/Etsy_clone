@@ -94,7 +94,7 @@ export default function reviewReducer(state = initialState, action) {
     const newState = {...state}
     switch(action.type) {
         case GET_REVIEWS:
-            return action.comment.Obj
+            return action.reviewObj
             
         case ADD_REVIEWS:
             newState[action.newReviewObj.id] = action.newReviewObj
@@ -113,3 +113,4 @@ export default function reviewReducer(state = initialState, action) {
     }
 
 }
+

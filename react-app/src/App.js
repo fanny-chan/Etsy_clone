@@ -9,6 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Header from './components/home/Header';
+import ProductDisplay from './components/products';
+import Reviews from './components/reviews';
 
 
 function App() {
@@ -45,6 +47,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path='/products/:productId'>
+          <ProductDisplay />
+        </ProtectedRoute>
+        <ProtectedRoute path='/reviews'>
+          <Reviews/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

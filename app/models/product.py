@@ -2,7 +2,6 @@ from .db import db
 
 # from app.models.cart import cart_products
 from datetime import datetime
-from app.models.cart import cart_products
 
 
 class Product(db.Model):
@@ -39,7 +38,9 @@ def to_dict(self):
         'title': self.title,
         'price': self.price,
         'description': self.description,
-        'quantity_available': self.quantity_available
-        
+        'quantity_available': self.quantity_available,
+        'created_at':self.created_at,
+        'updated_at':self.created_at,
+
     }
     
