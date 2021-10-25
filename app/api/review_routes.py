@@ -3,8 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Review
 from app.models.product import Product
 from app.forms import EditReviewForm
-
-
+from app.forms import NewReviewForm
 
 
 review_routes = Blueprint('reviews', __name__)
@@ -26,6 +25,7 @@ def get_one_review(id):
 @review_routes.route('/new', methods=['POST'])
 @login_required
 def create_a_review():
+    form = NewReviewForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         review = Review(

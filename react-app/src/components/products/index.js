@@ -2,8 +2,8 @@ import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {thunkGetAllProducts, thunkGetProductDetails } from '../../store/products';
-import { thunkGetAllReviews } from '../../store/reviews';
-import Reviews from '../reviews';
+import { thunkGetAllReviews,thunkDeleteReview} from '../../store/reviews';
+
 
 export const ProductDisplay = () => {
     const dispatch = useDispatch();
@@ -36,6 +36,22 @@ export const ProductDisplay = () => {
     console.log('----frontend---', reviewsSection)
     // const productReviews = reviewsSection.map()
 
+    const handleDeleteReview = (e) => {
+        e.preventDefault();
+        dispatch(thunkDeleteReview(e.target.value));
+    }
+
+    const postReview = async (e) => {
+        e.preventDefault();
+
+        let newReview = {
+            user_id: sessionUser?.id,
+            product_id:product.id,
+            content:reviewContent,
+            rating:reviewRating
+        };
+
+    }
     return (
     <>
         <div className="product-page-wrapper">
@@ -51,6 +67,14 @@ export const ProductDisplay = () => {
                         <div className="review-username"> {reviews.user.username && reviews.created_at}
                         </div>
                         <div className="review-content"> {reviews.content}
+                        </div>
+                        <div className='delete-review'>
+                        <button 
+                        value={reviews.id}
+                        className='delete-review-btn'
+                        onClick={handleDeleteReview}
+                        >Delete Review
+                        </button>
                         </div>
 
                     </div>
