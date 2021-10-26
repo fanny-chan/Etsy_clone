@@ -1,4 +1,4 @@
-/* #modal {
+#modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -20,6 +20,7 @@
 
   #modal-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     position: absolute;
@@ -32,5 +33,12 @@
     box-shadow: rgb(0 0 0 / 45%) 0px 2px 10px;
     width: 470px;
     min-height: 650px;
+    align-items: center;
 
-} */
+}
+
+.login-input{
+  width: 100px;
+  display: flow-root;
+}
+
