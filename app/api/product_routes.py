@@ -4,6 +4,7 @@ from app.models import db, Product
 from flask_wtf.csrf import generate_csrf
 from app.forms import editProductForm
 from flask_login import current_user, login_required
+from app.forms import createNewProductForm
 
 
 product_routes = Blueprint('products', __name__)

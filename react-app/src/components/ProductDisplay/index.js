@@ -14,9 +14,12 @@ export default function AllProductDisplay() {
     const [description, setDescription] = useState(products?.description)
     const [quantity_available, setQuantity_available] = useState(products?.quantity_available)
     const [price, setPrice] = useState(products?.price)
+    const [cart, setCart] = useState([])
     console.log('----PRODUCTS----', products)
     
-    
+    const addToCart = (product) => {
+        setCart([...cart, product])
+    }
 
     useEffect(() => {
         dispatch(thunkGetAllProducts())
@@ -58,49 +61,59 @@ export default function AllProductDisplay() {
             {productsSection.map((product) => {
                 return (
                 <div>
-                    {product?.user?.username}
+                    <h1 className="product-title">{product?.title}</h1>
                     <div></div>
-                    {product?.title}
+                    <p className="product-username">{product?.user?.username}</p>
                     <div></div>
-                    {product?.description}
+                    <p className="product-description">{product?.description}</p>
                     <div></div>
-                    {'$'+ product?.price}
+                    <p className="product-price">{'$'+ product?.price}</p>
+                    <p className="product-quantity">{product?.quantity_available}</p>
                     <div style={{height:"30px"}}></div>
                 </div>
                 )
             })}
             
             <div>
-                {products?.seller_id === sessionUser?.id && (
-                    <form onSubmit={handleSubmitEdit}>
-                        <div>
-                            <div className="input-container">
-                                <input
-                                type="text"
-                                placeholder="Name of product"
-                                required
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                />
-                                <input
-                                type="number"
-                                placeholder="Price"
-                                required
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
-                                />
-                                <input
-                                type="number"
-                                placeholder="Quantity available"
-                                required
-                                value={quantity}
-                                onChange={(e) => setQuantity_available(e.target.value)}
-                                />
-                                <button type="submit" onClick={handleSubmit}>Edit Product</button>
+                {/* {products?.seller_id === sessionUser?.id && ( */}
+                    <>
+                        <form onSubmit={handleSubmitEdit}>
+                            <div>
+                                <div className="input-container">
+                                    <input
+                                    type="text"
+                                    placeholder="Name of product"
+                                    required
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                    <input
+                                    type="number"
+                                    placeholder="Price"
+                                    required
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    />
+                                    <input
+                                    type="text"
+                                    placeholder="Description"
+                                    required
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    />
+                                    <input
+                                    type="number"
+                                    placeholder="Quantity available"
+                                    required
+                                    value={quantity}
+                                    onChange={(e) => setQuantity_available(e.target.value)}
+                                    />
+                                    <button type="submit" onClick={handleSubmit}>New Product</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                )}
+                        </form>
+                </>)
+                {/* } */}
             </div>
             </div>
             </div>          

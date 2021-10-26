@@ -48,12 +48,13 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          <AllProductDisplay/>
         </ProtectedRoute>
         <ProtectedRoute path='/products/:productId'>
           <ProductDisplay />
         </ProtectedRoute>
         <ProtectedRoute path='/products'>
-          <AllProductDisplay/>
+          {/* <AllProductDisplay/> */}
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
