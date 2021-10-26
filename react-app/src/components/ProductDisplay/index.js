@@ -1,6 +1,6 @@
 import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {thunkCreateProduct, thunkEditProduct, thunkGetAllProducts} from '../../store/products';
 
 export default function AllProductDisplay() {
@@ -57,7 +57,11 @@ export default function AllProductDisplay() {
             {productsSection.map((product) => {
                 return (
                 <div>
-                    <h1 className="product-title">{product?.title}</h1>
+                    
+                    <div>
+                    <NavLink className="product-title" to="/products/">{product?.title}</NavLink>
+                    {/* <h1 className="product-title">{product?.title}</h1> */}
+                    </div>
                     <div></div>
                     <p className="product-username">{product?.user?.username}</p>
                     <div></div>
