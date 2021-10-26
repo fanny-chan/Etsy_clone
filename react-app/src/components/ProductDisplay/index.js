@@ -14,12 +14,8 @@ export default function AllProductDisplay() {
     const [description, setDescription] = useState(products?.description)
     const [quantity_available, setQuantity_available] = useState(products?.quantity_available)
     const [price, setPrice] = useState(products?.price)
-    const [cart, setCart] = useState([])
     console.log('----PRODUCTS----', products)
     
-    const addToCart = (product) => {
-        setCart([...cart, product])
-    }
 
     useEffect(() => {
         dispatch(thunkGetAllProducts())
@@ -79,6 +75,7 @@ export default function AllProductDisplay() {
                     <>
                         <form onSubmit={handleSubmitEdit}>
                             <div>
+                                <h2>hello</h2>
                                 <div className="input-container">
                                     <input
                                     type="text"

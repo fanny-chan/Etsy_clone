@@ -10,10 +10,10 @@ const getCart = cartObj => {
     }
 }
 
-const addToCart = addToCartObj => {
+const addToCart = cartObj => {
     return {
         type:ADD_TO_CART,
-        addToCartObj
+        cartObj
     }
 }
 
@@ -86,5 +86,13 @@ const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_CART:
             return action.cartObj
+        case ADD_TO_CART:
+            newState[action.cartObj] = action.newCartObj
+            return newState
+        case DELETE_PRODUCT_FROM_CART:
+            delete newState[action.deletedFromCartObj.id]
+            return newState
     }
 }
+
+export default cartReducer;
