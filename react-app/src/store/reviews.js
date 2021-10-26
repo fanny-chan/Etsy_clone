@@ -104,7 +104,6 @@ export default function reviewReducer(state = initialState, action) {
             return newState
 
         case EDIT_REVIEWS:
-            console.log(action.editReviewObj)
             newState[action.editReviewObj.id] = action.editReviewObj
             return newState
             

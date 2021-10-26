@@ -1,6 +1,7 @@
 import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { thunkAddToCart } from '../../store/cart';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 
@@ -19,6 +20,12 @@ export const ProductDisplay = () => {
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
     const [reviewId, setReviewId] = useState(0)
+    // const [cart, setCart] = useState([])
+    
+    const addToCart = (product) => {
+        console.log(product)
+        // dispatch(thunkAddToCart(product))
+    }
 
     const user = useSelector(state => {
         return state.session?.user
@@ -79,7 +86,12 @@ export const ProductDisplay = () => {
         <div className="product-page-wrapper">
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
+
                 <h2 className="review-title">WE'RE HERE</h2>
+                <h2 className="review-title">WE'RE HERE</h2>
+            </div>
+            <div>
+            <button onClick={addToCart} value={product.id} >Add To Cart</button>
             </div>
             <div className="comments">
             {specificReview.map((review) => {
@@ -143,7 +155,7 @@ export const ProductDisplay = () => {
                             <option>4</option>
                             <option>5</option>
                         </select>
-                        <textArea
+                        <textarea
                         className="new-review"
                         style={{minHeight:"50px"}}
                         placeholder="Add a review"
