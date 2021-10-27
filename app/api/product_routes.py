@@ -71,7 +71,7 @@ def edit_product(id):
         return form.errors
     
 # delete a product
-@product_routes.route('/delete/<int:id>', methods=['PATCH'])
+@product_routes.route('/delete/<int:id>', methods=['DELETE'])
 @login_required
 def delete_product(id):
     #deleted_product = Product.query.filter_by(product_id == id).first()

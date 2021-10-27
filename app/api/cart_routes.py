@@ -10,9 +10,7 @@ cart_routes = Blueprint('carts', __name__)
 # get all products in cart
 @cart_routes.route('/')
 def get_cart_items():
-    print('------', current_user.id)
     cart_items = Cart.query.filter_by(user_id = current_user.id).all()
-    print('--CART--', cart_items)
     # return [cart_item.to_dict() for cart_item in cart_items]
     return {cart_item.id:cart_item.to_dict() for cart_item in cart_items}
 
@@ -53,10 +51,11 @@ def edit_cart_item(id):
         return new_cart_item.to_dict()
 
 #delete a cart_item
-@cart_routes.route('/delete/product/<int:id>')
-def delete(id):
-    deleted_cart_item = Cart.query.filter(Product.id == id).first()
+@cart_routes.route('/delete/product/<int:id>',methods=['DELETE'])
+def delete_product_from_cart(id):
+    deleted_cart_item = Cart.query.filter(Cart.product_id == id).first()
+    print("%%%%%%",deleted_cart_item)
     db.session.delete(deleted_cart_item)
     db.session.commit()
-    return deleted_cart_item.to_dict()
+    return {"id": id}
 
