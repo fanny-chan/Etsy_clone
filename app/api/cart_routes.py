@@ -22,7 +22,7 @@ def add_cart_item():
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
-        query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] )
+        query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] ).first()
         print('-----QUERY---', query)
         if not query:
             new_cart_item = Cart(
@@ -34,10 +34,9 @@ def add_cart_item():
             db.session.commit()
             return new_cart_item.to_dict()
         else:
-            item = query.first()
-            item.quantity = form.data['quantity']
-            db.session.commit()
-            return item.to_dict()
+            # item = query.first()
+            query.quantity = form.data['quantity']
+            return query.to_dict()
 
 #edit a cart_product
 @cart_routes.route('/edit-product', methods=['PATCH'])

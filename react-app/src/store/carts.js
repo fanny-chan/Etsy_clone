@@ -83,18 +83,23 @@ export const thunkDeleteProductFromCart = (cartDetails) => async (dispatch) => {
         return deletedCartObj
     }
 }
-const initialState = []
+const initialState = {}
 
 const cartReducer = (state = initialState, action) => {
+    let newState  = {...state}
     switch (action.type) {
         case GET_CART:
             return action.cartObj
         case ADD_TO_CART:
-            return [...state, action.cartObj]
+            console.log('-----ACTION', action.cartObj.product_id)
+            newState[action.cartObj.product_id] = action.cartObj
+            return newState
         case EDIT_QUANTITY_OF_PRODUCT:
-            return [...state.filter(item => item.productId !== action.cartObj.productId), action.cartObj]
+            newState[action.cartObj.product_id] = action.cartObj
+            return newState
         case DELETE_PRODUCT_FROM_CART:
-            return [...state.filter(item => item.productId !== action.cartObj.productId)], action.carObj
+            delete newState[action.cartObj.product_id] 
+            return newState
         default:
             return state
     }
