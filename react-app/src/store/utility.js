@@ -1,7 +1,8 @@
-function cartItemObj(productId, userId, quantity){
+export function cartItemObj(productId, userId, quantity){
     return {
         productId,
         userId,
         quantity
     }
 }
+

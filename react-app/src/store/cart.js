@@ -1,3 +1,5 @@
+import {cartItemObj} from './utility'
+
 const GET_CART = 'cart/LOAD'
 const ADD_TO_CART = 'cart/ADD'
 const EDIT_QUANTITY_OF_PRODUCT = 'cart/EDIT'
@@ -43,7 +45,7 @@ export const thunkGetCarts = (id) => async (dispatch) => {
 }
 
 export const thunkAddToCart = productInCart => async (dispatch)=> {
-    const response = await fetch('/api/carts/add-products', {
+    const response = await fetch('/api/carts/add-product', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json'

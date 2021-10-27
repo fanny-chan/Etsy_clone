@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/cart';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
-import { thunkAddToCart } from '../../store/cart';
+
 
 
 export const ProductDisplay = () => {
@@ -29,8 +29,13 @@ export const ProductDisplay = () => {
     })
 
     const handleAddToCart = () => {
-        thunkAddToCart()
+        dispatch(thunkAddToCart({
+            product_id: productId, 
+            user_id: sessionUser.id, 
+            quantity 
+        }))
     }
+    
 
     useEffect(() => {
         // dispatch(thunkGetAllProducts())
@@ -93,8 +98,7 @@ export const ProductDisplay = () => {
                         type="number"
                         min="1"
                         required
-                        value={quantity}
-                        onChange={e => e?.target?.value ?? 1}
+                        onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
                     />
                 <button
                 className= "add-to-cart-button"
@@ -186,5 +190,6 @@ export const ProductDisplay = () => {
     </>
     )
 }
+
 
 export default ProductDisplay

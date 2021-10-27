@@ -15,18 +15,25 @@ def get_cart_items(user_id):
 
 # add item to cart
 @cart_routes.route('/add-product', methods=['POST'])
-def add_cart_item(id):
+def add_cart_item():
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
-        new_cart_item = Cart(
-            user_id = current_user.id,
-            product_id = form.data['product_id'],
-            quantity = form.data['quantity']
-        )
-        db.session.add(new_cart_item)
-        db.session.commit()
-        return new_cart_item.to_dict()
+        query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] )
+        if not query:
+            new_cart_item = Cart(
+                user_id = current_user.id,
+                product_id = form.data['product_id'],
+                quantity = form.data['quantity']
+            )
+            db.session.add(new_cart_item)
+            db.session.commit()
+            return new_cart_item.to_dict()
+        else:
+            item = query.first()
+            item.quantity = form.data['quantity']
+            db.session.commit()
+            return item.to_dict()
 
 #edit a cart_product
 @cart_routes.route('/edit-product', methods=['PATCH'])
