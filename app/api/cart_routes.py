@@ -23,6 +23,7 @@ def add_cart_item():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
         query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] ).first()
+
         print('-----QUERY---', query)
         if not query:
             new_cart_item = Cart(
