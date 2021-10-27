@@ -6,6 +6,7 @@ import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 
 
+
 export const ProductDisplay = () => {
     const dispatch = useDispatch();
     const {productId} = useParams()
@@ -19,17 +20,22 @@ export const ProductDisplay = () => {
     })
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
-    const [reviewId, setReviewId] = useState(0)
-    // const [cart, setCart] = useState([])
+    const [reviewId, setReviewId] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     
-    const addToCart = (product) => {
-        console.log(product)
-        // dispatch(thunkAddToCart(product))
-    }
 
     const user = useSelector(state => {
         return state.session?.user
     })
+
+    const handleAddToCart = () => {
+        dispatch(thunkAddToCart({
+            product_id: productId, 
+            user_id: sessionUser.id, 
+            quantity 
+        }))
+    }
+    
 
     useEffect(() => {
         // dispatch(thunkGetAllProducts())
@@ -88,10 +94,17 @@ export const ProductDisplay = () => {
                 <h2 className="product-title">{product?.title}</h2>
 
                 <h2 className="review-title">WE'RE HERE</h2>
-                <h2 className="review-title">WE'RE HERE</h2>
-            </div>
-            <div>
-            <button onClick={addToCart} value={product.id} >Add To Cart</button>
+                    <input
+                        type="number"
+                        min="1"
+                        required
+                        onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
+                    />
+                <button
+                className= "add-to-cart-button"
+                onClick={handleAddToCart}
+                >Add to Cart
+                </button>
             </div>
             <div className="comments">
             {specificReview.map((review) => {
@@ -177,5 +190,6 @@ export const ProductDisplay = () => {
     </>
     )
 }
+
 
 export default ProductDisplay
