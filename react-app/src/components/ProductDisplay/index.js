@@ -9,10 +9,10 @@ export default function AllProductDisplay() {
     const sessionUser = useSelector((state) => state.session.user);
     const quantity = useSelector(state => state?.quantity_available)
 
-    const [title, setTitle] = useState(products?.title)
-    const [description, setDescription] = useState(products?.description)
-    const [quantity_available, setQuantity_available] = useState(products?.quantity_available)
-    const [price, setPrice] = useState(products?.price)
+    const [title, setTitle] = useState(products?.title || "title not found")
+    const [description, setDescription] = useState(products?.description || "description not found")
+    const [quantity_available, setQuantity_available] = useState(products?.quantity_available || 0)
+    const [price, setPrice] = useState(products?.price || 0)
     
 
     useEffect(() => {

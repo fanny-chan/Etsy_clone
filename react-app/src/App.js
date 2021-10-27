@@ -51,9 +51,9 @@ function App() {
           <h1>My Home Page</h1>
           <AllProductDisplay/>
         </Route>
-        <ProtectedRoute path='/products/:productId'>
+        <Route path='/products/:productId'>
           <ProductDisplay />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/products'>
           {/* <AllProductDisplay/> */}
         </ProtectedRoute>

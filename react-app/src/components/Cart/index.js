@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { useDispatch, React, useState, useEffect} from 'react';
+import { useDispatch,useSelector } from 'react-redux';
+import { React, useState, useEffect} from 'react';
 import { thunkDeleteProductFromCart , thunkGetCarts } from '../../store/carts';
 
 export default function Cart() {

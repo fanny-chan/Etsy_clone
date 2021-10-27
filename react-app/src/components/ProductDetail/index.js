@@ -31,7 +31,7 @@ export const ProductDisplay = () => {
     const handleAddToCart = () => {
         dispatch(thunkAddToCart({
             product_id: productId, 
-            user_id: sessionUser.id, 
+            user_id: user_id, 
             quantity 
         }))
     }
@@ -63,7 +63,7 @@ export const ProductDisplay = () => {
     const postReview = async (e) => {
         e.preventDefault();
         let newReview = {
-            user_id: sessionUser?.id,
+            user_id: user_id,
             product_id:product.id,
             content:reviewContent,
             rating:reviewRating
@@ -98,6 +98,7 @@ export const ProductDisplay = () => {
                         type="number"
                         min="1"
                         required
+                        value ={quantity}
                         onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
                     />
                 <button
