@@ -10,10 +10,10 @@ const getCart = cartObj => {
     }
 }
 
-const addToCart = addToCartObj => {
+const addToCart = cartObj => {
     return {
         type:ADD_TO_CART,
-        addToCartObj
+        cartObj
     }
 }
 

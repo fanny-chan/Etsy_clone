@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Header from './components/home/Header';
-import ProductDisplay from './components/products';
+import ProductDisplay from './components/ProductDetail';
 import Reviews from './components/reviews';
 import AllProductDisplay from './components/ProductDisplay';
 
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Header />
       <Switch>
         <Route path='/login' exact={true}>
