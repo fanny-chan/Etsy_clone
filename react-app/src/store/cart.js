@@ -31,11 +31,12 @@ const deleteProductFromCart = deletedFromCartObj => {
     }
 }
 
-export const thunkGetCarts = () => async (dispatch) => {
-    const response = await fetch('/api/carts')
+export const thunkGetCarts = (id) => async (dispatch) => {
+    const response = await fetch(`/api/carts/${id}`)
 
     if(response.ok) {
         const cartObj = await response.json();
+        cartObj.map(item => cartItemObj(item.product_id, item.user_id, item.quantity))
         dispatch(getCart(cartObj))
         return cartObj
     }
@@ -79,12 +80,19 @@ export const thunkDeleteProductFromCart = (cartDetails) => async (dispatch) => {
         return deletedCartObj
     }
 }
-const initialState = {}
+const initialState = []
 
 const cartReducer = (state = initialState, action) => {
-    let newState = {...state}
     switch (action.type) {
         case GET_CART:
             return action.cartObj
+        case ADD_TO_CART:
+            return [...state, action.cartObj]
+        case EDIT_QUANTITY_OF_PRODUCT:
+            return [...state.filter(item => item.productId !== action.cartObj.productId), action.cartObj]
+        case DELETE_PRODUCT_FROM_CART:
+            return [...state.filter(item => item.productId !== action.cartObj.productId)], action.carObj
     }
 }
+
+export default cartReducer

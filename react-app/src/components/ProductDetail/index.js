@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
+import { thunkAddToCart } from '../../store/cart';
 
 
 export const ProductDisplay = () => {
@@ -18,11 +19,17 @@ export const ProductDisplay = () => {
     })
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
-    const [reviewId, setReviewId] = useState(0)
+    const [reviewId, setReviewId] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    
 
     const user = useSelector(state => {
         return state.session?.user
     })
+
+    const handleAddToCart = () => {
+        thunkAddToCart()
+    }
 
     useEffect(() => {
         // dispatch(thunkGetAllProducts())
@@ -80,6 +87,18 @@ export const ProductDisplay = () => {
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
                 <h2 className="review-title">WE'RE HERE</h2>
+                    <input
+                        type="number"
+                        min="1"
+                        required
+                        value={quantity}
+                        onChange={e => e?.target?.value ?? 1}
+                    />
+                <button
+                className= "add-to-cart-button"
+                onClick={handleAddToCart}
+                >Add to Cart
+                </button>
             </div>
             <div className="comments">
             {specificReview.map((review) => {
