@@ -30,7 +30,7 @@ class Cart(db.Model):
     # one to one user -- cart
     user = db.relationship("User", back_populates="cart")
 
-    product = db.relationship("Product", back_populates="carts")
+    product = db.relationship("Product", lazy='subquery',back_populates="carts")
 
     # many to many
     # products = db.relationship(
