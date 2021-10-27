@@ -94,6 +94,8 @@ const cartReducer = (state = initialState, action) => {
             return [...state.filter(item => item.productId !== action.cartObj.productId), action.cartObj]
         case DELETE_PRODUCT_FROM_CART:
             return [...state.filter(item => item.productId !== action.cartObj.productId)], action.carObj
+        default:
+            return state
     }
 }
 
