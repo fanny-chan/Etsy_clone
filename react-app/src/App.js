@@ -12,6 +12,7 @@ import Header from './components/home/Header';
 import ProductDisplay from './components/ProductDetail';
 import Reviews from './components/reviews';
 import AllProductDisplay from './components/ProductDisplay';
+import Cart from './components/Cart/index';
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/products'>
           {/* <AllProductDisplay/> */}
+        </ProtectedRoute>
+        <ProtectedRoute path='/carts'>
+          <h2>Carts</h2>
+          <Cart />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

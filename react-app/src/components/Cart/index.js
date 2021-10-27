@@ -1,8 +1,12 @@
-import React from 'react'
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import { useDispatch, React} from 'react';
+import { thunkDeleteProductFromCart } from '../../store/carts';
 
-export default function index() {
+export default function Cart() {
     const {productId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
 
     const handleDeleteProduct =() => {
         dispatch(thunkDeleteProductFromCart({
@@ -12,12 +16,12 @@ export default function index() {
     }
     return (
         <div>
-            
+            <h2>CART</h2>
             <button
                 className= "add-to-cart-button"
                 onClick={handleDeleteProduct}
                 >Delete
-                </button>
+            </button>
         </div>
     )
 }
