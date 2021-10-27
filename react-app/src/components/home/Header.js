@@ -26,7 +26,7 @@ export default function Header() {
                         </div>
                         
                         <div className="greeting">
-                            <h3 className="header">Hi, {user.first_name}</h3>
+                            {/* <h3 className="header">Hi, {user.first_name}</h3> */}
                         <div className="logout-button">
                             <LogoutButton />
                         </div>
