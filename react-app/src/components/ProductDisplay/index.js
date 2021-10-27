@@ -6,7 +6,6 @@ import {thunkCreateProduct, thunkEditProduct, thunkGetAllProducts} from '../../s
 export default function AllProductDisplay() {
     const dispatch = useDispatch();
     const products = useSelector(state => state?.products)
-    console.log('----PRODUCTS---', products)
     const sessionUser = useSelector((state) => state.session.user);
     const quantity = useSelector(state => state?.quantity_available)
 
@@ -14,7 +13,6 @@ export default function AllProductDisplay() {
     const [description, setDescription] = useState(products?.description)
     const [quantity_available, setQuantity_available] = useState(products?.quantity_available)
     const [price, setPrice] = useState(products?.price)
-    console.log('----PRODUCTS----', products)
     
 
     useEffect(() => {
@@ -59,7 +57,7 @@ export default function AllProductDisplay() {
                 <div>
                     
                     <div>
-                    <NavLink className="product-title" to="/products/">{product?.title}</NavLink>
+                    <NavLink className="product-title" to={`/products/${product.id}`}>{product?.title}</NavLink>
                     {/* <h1 className="product-title">{product?.title}</h1> */}
                     </div>
                     <div></div>
