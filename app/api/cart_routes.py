@@ -8,10 +8,13 @@ from flask_login import current_user
 cart_routes = Blueprint('carts', __name__)
 
 # get all products in cart
-@cart_routes.route('/<int:id>')
-def get_cart_items(user_id):
-    cart_items = Cart.query.filter(user_id = user_id)
-    return [cart_item.to_dict() for cart_item in cart_items]
+@cart_routes.route('/')
+def get_cart_items():
+    print('------', current_user.id)
+    cart_items = Cart.query.filter_by(user_id = current_user.id).all()
+    print('--CART--', cart_items)
+    # return [cart_item.to_dict() for cart_item in cart_items]
+    return {cart_item.id:cart_item.to_dict() for cart_item in cart_items}
 
 # add item to cart
 @cart_routes.route('/add-product', methods=['POST'])
@@ -20,6 +23,7 @@ def add_cart_item():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate():
         query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] )
+        print('-----QUERY---', query)
         if not query:
             new_cart_item = Cart(
                 user_id = current_user.id,

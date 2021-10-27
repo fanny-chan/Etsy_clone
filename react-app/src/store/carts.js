@@ -33,12 +33,13 @@ const deleteProductFromCart = deletedFromCartObj => {
     }
 }
 
-export const thunkGetCarts = (id) => async (dispatch) => {
-    const response = await fetch(`/api/carts/${id}`)
+export const thunkGetCarts = () => async (dispatch) => {
+    const response = await fetch(`/api/carts/`)
 
     if(response.ok) {
         const cartObj = await response.json();
-        cartObj.map(item => cartItemObj(item.product_id, item.user_id, item.quantity))
+        const cartArr = Object.values(cartObj)
+        cartArr.map(item => cartItemObj(item.product_id, item.user_id, item.quantity))
         dispatch(getCart(cartObj))
         return cartObj
     }
