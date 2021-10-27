@@ -3,7 +3,7 @@ import {cartItemObj} from './utility'
 const GET_CART = 'cart/LOAD'
 const ADD_TO_CART = 'cart/ADD'
 const EDIT_QUANTITY_OF_PRODUCT = 'cart/EDIT'
-const DELETE_PRODUCT_FROM_CART = 'cart/DELELTE'
+const DELETE_PRODUCT_FROM_CART = 'cart/DELETE'
 
 const getCart = cartObj => {
     return {
@@ -75,10 +75,18 @@ export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
     }
 }
 
-export const thunkDeleteProductFromCart = (cartDetails) => async (dispatch) => {
-    const response = await fetch(`/api/carts/delete/product/${cartDetails.id}`)
+export const thunkDeleteProductFromCart = (id) => async (dispatch) => {
+    const response = await fetch(`/api/carts/delete/product/${id}`,{
+        method:'DELETE',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(id)
+    })
     if (response.ok) {
+        console.log('IM HERE 1')
         const deletedCartObj = await response.json();
+        console.log('---------IM HERE 2--------------')
         dispatch(deleteProductFromCart(deletedCartObj))
         return deletedCartObj
     }

@@ -54,7 +54,7 @@ def edit_cart_item(id):
 @cart_routes.route('/delete/product/<int:id>',methods=['DELETE'])
 def delete_product_from_cart(id):
     deleted_cart_item = Cart.query.filter(Cart.product_id == id).first()
-    print("%%%%%%",deleted_cart_item)
+    print("%%%%%% WE ARE IN DELETE THUNK%%%%",deleted_cart_item)
     db.session.delete(deleted_cart_item)
     db.session.commit()
     return {"id": id}

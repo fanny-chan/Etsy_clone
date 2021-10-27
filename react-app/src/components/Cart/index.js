@@ -16,14 +16,14 @@ export default function Cart() {
 
     // DELETE ITEMS FROM CART
 
-    const handleDeleteProduct =(id) => {
-        // e.preventDefault();
+    const handleDeleteProduct =(e) => {
+        e.preventDefault();
         // const deleted = {
         //     product_id: productId,
         //     user_id: sessionUser.id
         // };
         // console.log('-----1233--', deleted)
-        dispatch(thunkDeleteProductFromCart(id))
+        dispatch(thunkDeleteProductFromCart(e.target.value));
 
     }
 
@@ -41,7 +41,8 @@ export default function Cart() {
                 </div>
                 <button
                     className= "add-to-cart-button"
-                    onClick={handleDeleteProduct(cartItem.product_id)}
+                    value={cartItem.product_id}
+                    onClick={handleDeleteProduct}
                     >Delete
                 </button>
             </>
