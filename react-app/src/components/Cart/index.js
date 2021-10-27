@@ -1,12 +1,19 @@
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import { useDispatch, React} from 'react';
-import { thunkDeleteProductFromCart } from '../../store/carts';
+import { useDispatch, React, useState, useEffect} from 'react';
+import { thunkDeleteProductFromCart , thunkGetCarts } from '../../store/carts';
 
 export default function Cart() {
     const {productId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        dispatch(thunkGetCarts(sessionUser?.id))
+    },[dispatch])
+
+    // DELETE ITEMS FROM CART
 
     const handleDeleteProduct =() => {
         dispatch(thunkDeleteProductFromCart({
