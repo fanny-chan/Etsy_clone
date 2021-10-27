@@ -6,6 +6,7 @@ import { thunkDeleteProductFromCart , thunkGetCarts } from '../../store/carts';
 export default function Cart() {
     const {productId} = useParams()
     const sessionUser = useSelector((state) => state.session.user);
+    const carts = useSelector(state => state.carts)
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
 
@@ -21,14 +22,24 @@ export default function Cart() {
             user_id: sessionUser.id
         }))
     }
+    const productsSection = Object.values(carts)
+    console.log('---OH---', productsSection)
+
     return (
-        <div>
-            <h2>CART</h2>
-            <button
-                className= "add-to-cart-button"
-                onClick={handleDeleteProduct}
-                >Delete
-            </button>
+        <div className="all-products"> HI
+        {productsSection.map((cartItem) => 
+             (
+            <>
+                <div>
+                    <h2>{cartItem.product.title}</h2>
+                </div>
+                <button
+                    className= "add-to-cart-button"
+                    onClick={handleDeleteProduct}
+                    >Delete
+                </button>
+            </>
+            ))}
         </div>
     )
 }
