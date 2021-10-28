@@ -59,10 +59,10 @@ function App() {
         <ProtectedRoute path='/products'>
           {/* <AllProductDisplay/> */}
         </ProtectedRoute>
-        <ProtectedRoute path='/carts'>
+        <Route path='/carts'>
           <h2>Carts</h2>
           <Cart />
-        </ProtectedRoute>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
