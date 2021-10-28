@@ -37,11 +37,15 @@ export const thunkGetCarts = () => async (dispatch) => {
     const response = await fetch(`/api/carts/`)
 
     if(response.ok) {
-        const cartObj = await response.json();
-        const cartArr = Object.values(cartObj)
-        cartArr.map(item => cartItemObj(item.product_id, item.user_id, item.quantity))
-        dispatch(getCart(cartObj))
-        return cartObj
+        const cartArr = await response.json();
+        // const cartArr = Object.values(cartObj)
+        const cartList = cartArr.items.map(item => cartItemObj(item.product_id, item.user_id, item.quantity, {
+            title:item.product.title,
+            description: item.product.description,
+            price: item.product.price
+        }))
+        dispatch(getCart(cartList))
+        return cartList
     }
 }
 
@@ -61,7 +65,7 @@ export const thunkAddToCart = productInCart => async (dispatch)=> {
 }
 
 export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
-    const response = await fetch('/api/carts/edit-product', {
+    const response = await fetch(`/api/carts/edit-product/${cartDetails.id}`, {
         method:'PATCH',
         headers: {
             'Content-Type':'application/json'
@@ -76,6 +80,7 @@ export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
 }
 
 export const thunkDeleteProductFromCart = (id) => async (dispatch) => {
+    console.log('----ID---', id)
     const response = await fetch(`/api/carts/delete/product/${id}`,{
         method:'DELETE',
         headers: {
@@ -84,30 +89,32 @@ export const thunkDeleteProductFromCart = (id) => async (dispatch) => {
         body: JSON.stringify(id)
     })
     if (response.ok) {
-        console.log('IM HERE 1')
         const deletedCartObj = await response.json();
-        console.log('---------IM HERE 2--------------')
         dispatch(deleteProductFromCart(deletedCartObj))
         return deletedCartObj
     }
 }
-const initialState = {}
+
+const initialState = []
 
 const cartReducer = (state = initialState, action) => {
-    let newState  = {...state}
+    // let newState  = {...state}
     switch (action.type) {
         case GET_CART:
-            return action.cartObj
+            return [...action.cartObj]
         case ADD_TO_CART:
-            console.log('-----ACTION', action.cartObj.product_id)
-            newState[action.cartObj.product_id] = action.cartObj
-            return newState
+            return [...state, action.cartObj]
         case EDIT_QUANTITY_OF_PRODUCT:
-            newState[action.cartObj.product_id] = action.cartObj
-            return newState
+            const newState = [...state]
+            const toChange = newState.findIndex(product => product.id === action.editCartObj.id)
+            newState[toChange].quantity = action.editCartObj.quantity
+            // return state.reduce((acc, product) => [
+            //     ...acc, product.productId === action.editCartObj.id ? {
+            //         ...product,
+            //         quantity: action.editCartObj.id
+            //     }: product ],[])
         case DELETE_PRODUCT_FROM_CART:
-            delete newState[action.deletedFromCartObj.product_id] 
-            return newState
+           return [...state.filter(product => product.productId !== action.deletedFromCartObj.id)] 
         default:
             return state
     }

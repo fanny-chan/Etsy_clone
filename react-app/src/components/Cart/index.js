@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import { useDispatch,useSelector } from 'react-redux';
 import { React, useState, useEffect} from 'react';
-import { thunkDeleteProductFromCart , thunkGetCarts } from '../../store/carts';
+import { thunkDeleteProductFromCart , thunkEditQuantityInCart, thunkGetCarts } from '../../store/carts';
 
 export default function Cart() {
     const sessionUser = useSelector((state) => state.session.user);
@@ -9,39 +9,51 @@ export default function Cart() {
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
     const [productId, setProductId] = useState(null)
+    const [quantity, setQuantity] = useState({})
+    
 
     useEffect(() => {
         dispatch(thunkGetCarts(sessionUser?.id))
-    },[dispatch])
+    },[])
 
+    // useEffect(() => {
+    //     console.log('----', carts)
+    //     setQuantity(
+    //         carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
+    //     )
+    // },[carts])
+
+    
     // DELETE ITEMS FROM CART
 
     const handleDeleteProduct =(e) => {
         e.preventDefault();
-        // const deleted = {
-        //     product_id: productId,
-        //     user_id: sessionUser.id
-        // };
-        // console.log('-----1233--', deleted)
         dispatch(thunkDeleteProductFromCart(e.target.value));
-
     }
 
-    const productsSection = Object.values(carts)
-    console.log('---OH---', productsSection)
+    // const onChangeQuantity = (evt, id) => {
+    //     dispatch(thunkEditQuantityInCart({quantity: evt?.target?.value, id}))
+    //     // setQuantity(s => ({...s, [id]: evt?.target?.value}))
+    // }
+    // const productsSection = Object.values(carts)
     
 
     return (
         <div className="all-products"> HI
-        {productsSection.map((cartItem) => 
+        {carts.map((cartItem) => 
              (
             <>
                 <div>
-                    <h2>{cartItem.product.title}</h2>
+                    <h2>{cartItem.productDetails.title}</h2>
                 </div>
+                <input
+                type="number"
+                value={quantity[cartItem.productId]}
+                // onChange={evt => onChangeQuantity(evt, cartItem.productId)}
+                />
                 <button
                     className= "add-to-cart-button"
-                    value={cartItem.product_id}
+                    value={cartItem.productId}
                     onClick={handleDeleteProduct}
                     >Delete
                 </button>
