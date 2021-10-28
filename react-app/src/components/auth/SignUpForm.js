@@ -59,21 +59,21 @@ const SignUpForm = () => {
       </div>
       <div>
         <label>First Name</label>
-        <input>
+        <input
           type="text"
           name="firstname"
           onChange={updateFirstname}
           value={firstname}
-        </input>
+        ></input>
       </div>
       <div>
         <label>Last Name</label>
-        <input>
+        <input
           type="text"
           name="lastname"
           onChange={updateLastname}
           value={lastname}
-        </input>
+        ></input>
       </div>
       <div>
         <label>User Name</label>
