@@ -1,8 +1,10 @@
 import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
+
 
 
 export const ProductDisplay = () => {
@@ -18,11 +20,22 @@ export const ProductDisplay = () => {
     })
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
-    const [reviewId, setReviewId] = useState(0)
+    const [reviewId, setReviewId] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    
 
     const user = useSelector(state => {
         return state.session?.user
     })
+
+    const handleAddToCart = () => {
+        dispatch(thunkAddToCart({
+            product_id: productId, 
+            user_id: user_id, 
+            quantity 
+        }))
+    }
+    
 
     useEffect(() => {
         // dispatch(thunkGetAllProducts())
@@ -37,9 +50,7 @@ export const ProductDisplay = () => {
 
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
-    console.log('----frontend---', reviewsSection)
     const specificReview = reviewsSection.filter((review) => review.product_id === product.id )
-    console.log('----specific----', specificReview)
     // const productReviews = reviewsSection.map()
 
     const handleDeleteReview = (e) => {
@@ -50,7 +61,7 @@ export const ProductDisplay = () => {
     const postReview = async (e) => {
         e.preventDefault();
         let newReview = {
-            user_id: sessionUser?.id,
+            user_id: user_id,
             product_id:product.id,
             content:reviewContent,
             rating:reviewRating
@@ -66,7 +77,7 @@ export const ProductDisplay = () => {
     const updateRating = (e) => setReviewRating(e.target.value)
 
     const updateReview = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let updatedContent = {
             id: reviewId,
             content:reviewContent
@@ -79,7 +90,20 @@ export const ProductDisplay = () => {
         <div className="product-page-wrapper">
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
+
                 <h2 className="review-title">WE'RE HERE</h2>
+                    <input
+                        type="number"
+                        min="1"
+                        required
+                        value ={quantity}
+                        onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
+                    />
+                <button
+                className= "add-to-cart-button"
+                onClick={handleAddToCart}
+                >Add to Cart
+                </button>
             </div>
             <div className="comments">
             {specificReview.map((review) => {
@@ -112,7 +136,7 @@ export const ProductDisplay = () => {
                         className="edit-review"
                         value={review.id}
                         onClick={() => {
-                            setReviewId = review.id
+                            setReviewId(review.id)
                             updateReview()
                         }}
                         >Edit Review
@@ -143,7 +167,7 @@ export const ProductDisplay = () => {
                             <option>4</option>
                             <option>5</option>
                         </select>
-                        <textArea
+                        <textarea
                         className="new-review"
                         style={{minHeight:"50px"}}
                         placeholder="Add a review"
@@ -165,5 +189,6 @@ export const ProductDisplay = () => {
     </>
     )
 }
+
 
 export default ProductDisplay

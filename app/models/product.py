@@ -26,6 +26,7 @@ class Product(db.Model):
     #     secondary=cart_products,
     #     back_populates="products"
     # )
+    carts = db.relationship("Cart", back_populates="product")
 
     # one to many product-- reviews
     reviews = db.relationship("Review", back_populates="product")

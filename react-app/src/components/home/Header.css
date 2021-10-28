@@ -12,6 +12,7 @@
     text-decoration: none;
 }
 
+/* .main-nav {
 .main-nav {
     display:flex;
     width: 100%;
@@ -24,7 +25,8 @@
     height: 85px;
     position: fixed;
     top: 0;
-}
+} */
+
 
 .search-input {
     padding-left: 18px;

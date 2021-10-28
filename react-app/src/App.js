@@ -9,9 +9,11 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Header from './components/home/Header';
-import ProductDisplay from './components/products';
+import ProductDisplay from './components/ProductDetail';
 import Reviews from './components/reviews';
 import AllProductDisplay from './components/ProductDisplay';
+import Cart from './components/Cart/index';
+import { thunkGetCarts } from './store/carts';
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(thunkGetCarts());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -50,11 +53,15 @@ function App() {
           <h1>My Home Page</h1>
           <AllProductDisplay/>
         </Route>
-        <ProtectedRoute path='/products/:productId'>
+        <Route path='/products/:productId'>
           <ProductDisplay />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/products'>
           {/* <AllProductDisplay/> */}
+        </ProtectedRoute>
+        <ProtectedRoute path='/carts'>
+          <h2>Carts</h2>
+          <Cart />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
