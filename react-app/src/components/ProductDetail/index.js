@@ -77,7 +77,7 @@ export const ProductDisplay = () => {
     const updateRating = (e) => setReviewRating(e.target.value)
 
     const updateReview = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let updatedContent = {
             id: reviewId,
             content:reviewContent
@@ -136,7 +136,7 @@ export const ProductDisplay = () => {
                         className="edit-review"
                         value={review.id}
                         onClick={() => {
-                            setReviewId = review.id
+                            setReviewId(review.id)
                             updateReview()
                         }}
                         >Edit Review
