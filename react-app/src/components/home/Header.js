@@ -33,8 +33,10 @@ export default function Header() {
                         </div>
                     </div>
                     <div className="shopping-cart">
-                        <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png" alt=""
-                        className="shopping-cart-icon"/>
+                        <a href="/carts">
+                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png" alt=""
+                            className="shopping-cart-icon"/>
+                        </a>
                     </div>
                     
                 </div>
