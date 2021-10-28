@@ -105,14 +105,14 @@ const cartReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             return [...state, action.cartObj]
         case EDIT_QUANTITY_OF_PRODUCT:
-            const newState = [...state]
-            const toChange = newState.findIndex(product => product.id === action.editCartObj.id)
-            newState[toChange].quantity = action.editCartObj.quantity
-            // return state.reduce((acc, product) => [
-            //     ...acc, product.productId === action.editCartObj.id ? {
-            //         ...product,
-            //         quantity: action.editCartObj.id
-            //     }: product ],[])
+            // const newState = [...state]
+            // const toChange = newState.findIndex(product => product.id === action.editCartObj.id)
+            // newState[toChange].quantity = action.editCartObj.quantity
+            return state.reduce((acc, product) => [
+                ...acc, product.productId === action.editCartObj.id ? {
+                    ...product,
+                    quantity: action.editCartObj.id
+                }: product ],[])
         case DELETE_PRODUCT_FROM_CART:
            return [...state.filter(product => product.productId !== action.deletedFromCartObj.id)] 
         default:
