@@ -58,7 +58,7 @@ def edit_a_review(id):
         print("\n\n", "EDITTED_REVIEW.TODICT:" ,edited_review.to_dict(), "\n\n")
         return edited_review.to_dict()
     else:
-        return "Sorry, you do not own this review"
+        return {"error":"Sorry, you do not own this review"}
 
 # delete a specific review
 @review_routes.route('/delete/<int:id>', methods=['DELETE'])

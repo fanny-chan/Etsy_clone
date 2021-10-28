@@ -18,9 +18,13 @@ export default function Cart() {
 
     useEffect(() => {
         console.log('----', carts)
-        setQuantity(
-            carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
-        )
+        if (carts.length) {
+            setQuantity(
+                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
+            )
+        } else {
+            setQuantity([]);
+        }
     },[carts])
 
     
