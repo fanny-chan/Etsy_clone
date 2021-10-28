@@ -2,20 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import './Header.css'
-import LoginFormModal from './LoginFormModal';
-import SignUpFormModal from './SignupFormModal';
-import LoggedInNav from '../LoggedInNav';
+import '../home/Header.css'
+import './LoggedInNav.css'
 
-export default function Header() {
 
+export default function LoggedInNav() {
     const user = useSelector((state) => state.session.user);
-
-    // if(user) {
-    //     <LoggedInNav />
-    // } else {
-        
-    // }
     return (
         <>
             <div className="main-nav-wrap">
@@ -26,13 +18,6 @@ export default function Header() {
                         <div className="search Icon"></div>
                     </div>
                     <div className="button-wrapper">
-                        <div className="login-button">
-                            <LoginFormModal />
-                        </div>
-                        <div className="signup-button">
-                            <SignUpFormModal />
-                        </div>
-                        
                         <div className="greeting">
                             {/* <h3 className="header">Hi, {user.first_name}</h3> */}
                         <div className="logout-button">

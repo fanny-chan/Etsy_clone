@@ -12,8 +12,6 @@ export const ProductDisplay = () => {
     const {productId} = useParams()
     const product = useSelector(state => state?.products)
     const reviews = useSelector(state => state?.reviews)
-    console.log(reviews)
-    console.log('-------%%%%_1------',product)
     const sessionUser = useSelector((state) => state.session.user);
     const user_id = useSelector((state) => {
         return state.session.user?.id
