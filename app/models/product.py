@@ -9,6 +9,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(500), nullable=False)
+    media_url = db.Column(db.String(1000), nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     quantity_available = db.Column(db.Integer, nullable=False)
@@ -36,6 +37,7 @@ class Product(db.Model):
             'seller_id': self.seller_id,
             'user':self.user.to_dict(),
             'title': self.title,
+            'media_url': self.media_url,
             'price': self.price,
             'description': self.description,
             'quantity_available': self.quantity_available,
