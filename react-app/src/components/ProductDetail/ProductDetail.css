@@ -1,0 +1,24 @@
+.review-header {
+    text-decoration: underline;
+    margin-right: 10px;
+    color: #595959;
+    font-size: 13px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.review-content {
+    box-sizing: border-box;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding-left: 48px;
+}
+
+.add-review-form {
+    padding: 10px;
+    border-radius: 200px;
+    box-sizing: border-box;
+    color: #f2f1f1;
+    background: #222323;
+}

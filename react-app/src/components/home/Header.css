@@ -56,6 +56,12 @@
     border-radius: 200px;
     border: 0;
     background-color: transparent;
+    width: 70px;
+    height: 35px;
+    font-size: 15px;
+}
+.login-button:hover {
+    background-color: rgb(226, 223, 223);
 }
 
 .button-wrapper {
@@ -67,6 +73,23 @@
     border-radius: 200px;
     border: 0;
     background-color: transparent;
+}
+
+.greeting-header {
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.logout-button {
+    border-radius: 200px;
+    border: 0;
+    background-color: transparent;
+    width: 70px;
+    height: 35px;
+    font-size: 15px;
+}
+.logout-button:hover {
+    background-color: rgb(226, 223, 223);
 }
 .link-navbar>ul {
     display: flex;

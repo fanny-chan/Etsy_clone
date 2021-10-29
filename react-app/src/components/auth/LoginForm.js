@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { useHistory } from 'react-router';
+import SignUpFormModal from '../home/SignupFormModal';
 
 
 const LoginForm = () => {
@@ -10,6 +11,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
+  const [signup, setSignup] = useState(false)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -28,7 +30,7 @@ const LoginForm = () => {
   const demoUser = async (e) => {
     e.preventDefault();
     const weAreIn = await dispatch(login("demo@aa.io", "password"));
-    // console.log('==========> we are in')
+    console.log('==========> we are in')
     if (weAreIn) {
       history.push("/")
     }
@@ -46,10 +48,18 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+  const register = async () => {
+    setSignup(true)
+  }
   return (
     <>
       <div className="login-header">Sign in
-      <button type="button" className="register-button">Register</button>
+      <div className="register-button"
+      onClick={register}
+      >
+      {/* {signup && <SignUpFormModal />} */}
+      <SignUpFormModal />
+      </div>
       </div>
       <form className="login-form" onSubmit={onLogin}>
         <div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkEditReviewDetails, thunkDeleteReview} from '../../store/reviews';
+import './ProductDetail.css'
 
 
 export default function Review({review}) {
@@ -30,11 +31,11 @@ export default function Review({review}) {
     return (
         <div>
             <div key={review.id}
-                    className="review-username">
-                        <div className="review-username"> {review?.user?.username}
+                    className="review-whole">
+                        <div className="review-header"> {review?.user?.username}
                         </div>
-                        <div>{review?.created_at}</div>
-                        <div>{review?.rating}</div>
+                        <div className="review-date">{review?.created_at}</div>
+                        <div className="review-rating">{review?.rating}</div>
                         <div className="review-content"> {review?.content}
                         <input
                         className="review-input"
