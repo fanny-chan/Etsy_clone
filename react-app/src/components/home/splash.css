@@ -1,0 +1,21 @@
+.script {
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    background:rgb(253,235,210);
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 18px;
+    color: #444343;
+    font-family: 'Martel', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: 0.5px;
+}
+.circle-images-wrapper {
+    padding-top: 12px;
+    padding-bottom: 13px;
+    border: none;
+    background:rgb(253,235,210);
+    height: 102px;
+}

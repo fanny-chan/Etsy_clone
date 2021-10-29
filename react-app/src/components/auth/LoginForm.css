@@ -1,0 +1,6 @@
+.login-input {
+    display: inline-block;
+    border: 1px solid #dedede;
+    width: 100%;
+    border-radius: 5px;
+}
