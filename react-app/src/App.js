@@ -15,6 +15,7 @@ import AllProductDisplay from './components/ProductDisplay';
 import Cart from './components/Cart/index';
 import { thunkGetCarts } from './store/carts';
 import Splash from './components/home/SignupFormModal/splash';
+import ProductCard from './components/ProductDisplay/ProductCard';
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true}>
           <Splash />
-          <AllProductDisplay/>
+          <ProductCard />
         </Route>
         {/* <Route path='/login' exact={true}>
           <LoginForm />
