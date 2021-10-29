@@ -75,7 +75,7 @@ export default function AllProductDisplay() {
             <div>
                 {/* {products?.seller_id === sessionUser?.id && ( */}
                     <>
-                        <form onSubmit={handleSubmitEdit}>
+                        {/* <form onSubmit={handleSubmitEdit}>
                             <div>
                                 <h2>hello</h2>
                                 <div className="input-container">
@@ -110,7 +110,7 @@ export default function AllProductDisplay() {
                                     <button type="submit" onClick={handleSubmit}>New Product</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> */}
                 </>)
                 {/* } */}
             </div>
