@@ -13,9 +13,18 @@
     letter-spacing: 0.5px;
 }
 .circle-images-wrapper {
-    padding-top: 12px;
+    padding-top: 55px;
     padding-bottom: 13px;
     border: none;
     background:rgb(253,235,210);
     height: 102px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.circle-images {
+    width: 150px ;
+    height: 150px ; 
+    background-position: center ;
+    background-size: cover;
+    border-radius: 50%;
 }
