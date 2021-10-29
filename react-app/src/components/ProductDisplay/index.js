@@ -2,6 +2,8 @@ import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {thunkCreateProduct, thunkEditProduct, thunkGetAllProducts} from '../../store/products';
+import Header from '../home/Header';
+import LoggedInNav from '../LoggedInNav';
 
 export default function AllProductDisplay() {
     const dispatch = useDispatch();
@@ -15,6 +17,11 @@ export default function AllProductDisplay() {
     const [price, setPrice] = useState(products?.price || 0)
     
 
+    if(sessionUser) {
+        <LoggedInNav />
+    } else {
+        <Header />
+    }
     useEffect(() => {
         dispatch(thunkGetAllProducts())
     }, [dispatch])

@@ -16,12 +16,16 @@ export default function Cart() {
         dispatch(thunkGetCarts(sessionUser?.id))
     },[])
 
-    // useEffect(() => {
-    //     console.log('----', carts)
-    //     setQuantity(
-    //         carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
-    //     )
-    // },[carts])
+    useEffect(() => {
+        console.log('----', carts)
+        if (carts.length) {
+            setQuantity(
+                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
+            )
+        } else {
+            setQuantity([]);
+        }
+    },[carts])
 
     
     // DELETE ITEMS FROM CART
@@ -31,11 +35,11 @@ export default function Cart() {
         dispatch(thunkDeleteProductFromCart(e.target.value));
     }
 
-    // const onChangeQuantity = (evt, id) => {
-    //     dispatch(thunkEditQuantityInCart({quantity: evt?.target?.value, id}))
-    //     // setQuantity(s => ({...s, [id]: evt?.target?.value}))
-    // }
-    // const productsSection = Object.values(carts)
+    const onChangeQuantity = (evt, id) => {
+        dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser.id}))
+        setQuantity(s => ({...s, [id]: evt}))
+    }
+    const productsSection = Object.values(carts)
     
 
     return (
@@ -49,7 +53,7 @@ export default function Cart() {
                 <input
                 type="number"
                 value={quantity[cartItem.productId]}
-                // onChange={evt => onChangeQuantity(evt, cartItem.productId)}
+                onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
                 />
                 <button
                     className= "add-to-cart-button"

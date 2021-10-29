@@ -44,7 +44,8 @@ def edit_cart_item(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     print("\n\n", "FORM VALIDATED:" ,form.validate_on_submit(), "\n\n")
     if form.validate_on_submit():
-        cart = Cart.query.filter_by(product_id = id , user_id = current_user.id)
+        cart = Cart.query.filter(Cart.product_id == id , Cart.user_id == current_user.id).first()
+        print("\n\n", "CART:" ,cart, "\n\n")
         cart.quantity = form.data['quantity']
         db.session.commit()
         return cart.to_dict()

@@ -40,7 +40,7 @@ const deleteProduct = deletedProductObj => {
 }
 
 export const thunkGetAllProducts = () => async (dispatch) => {
-    const response = await fetch ('/api/products')
+    const response = await fetch ('/api/products/')
     if (response.ok) {
         const productObj = await response.json();
         dispatch(getProducts(productObj))

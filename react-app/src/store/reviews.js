@@ -35,7 +35,7 @@ const deleteReview = deleteReviewObj => {
 //Thunks
 // get all reviews thunk
 export const thunkGetAllReviews = () => async (dispatch) => {
-    const response = await fetch ('/api/reviews')
+    const response = await fetch ('/api/reviews/')
 
     if(response.ok) {
         const reviewsObj = await response.json();

@@ -1,0 +1,66 @@
+.shopping-cart-icon {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.logo {
+    color: rgb(241, 101, 31);
+    font-size: 35px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 12%;
+    text-decoration: none;
+}
+
+
+.main-nav {
+    display:flex;
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display:flex;
+    justify-content: center;
+    height: 85px;
+    top: 0;
+}
+
+.search-bar{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    border-radius: 50px;
+    border: 1px solid #cfcfcf;
+    background: #f7f4f4;
+}
+
+
+.search-input {
+    padding-left: 18px;
+    border: none;
+    border-radius: 50px;
+    font-size: 17px;
+    line-height: 28px;
+    height: 48px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #efefef;
+}
+
+.login_button {
+    border-radius: 200px;
+    border: 0;
+    background-color: transparent;
+}
+
+.button-wrapper {
+    display: flex;
+    align-items: baseline;
+}
+
+.signup_button {
+    border-radius: 200px;
+    border: 0;
+    background-color: transparent;
+}

@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
+import Reviews from '../reviews';
+import Review from './review';
 
 
 
@@ -12,8 +14,6 @@ export const ProductDisplay = () => {
     const {productId} = useParams()
     const product = useSelector(state => state?.products)
     const reviews = useSelector(state => state?.reviews)
-    console.log(reviews)
-    console.log('-------%%%%_1------',product)
     const sessionUser = useSelector((state) => state.session.user);
     const user_id = useSelector((state) => {
         return state.session.user?.id
@@ -108,41 +108,10 @@ export const ProductDisplay = () => {
             <div className="comments">
             {specificReview.map((review) => {
                 return (
-                    <div key={review.id}
-                    className="review-username">
-                        <div className="review-username"> {review?.user?.username}
-                        </div>
-                        <div>{review?.created_at}</div>
-                        <div>{review?.rating}</div>
-                        <div className="review-content"> {review?.content}
-                        <input
-                        className="review-input"
-                        name={review.id}
-                        type="text"
-                        placeholder="edit your review"
-                        value={reviewContent}
-                        onChange={updateContent}
-                        />
-                        </div>
-                        <div className='delete-review'>
-                        <button 
-                        value={review.id}
-                        className='delete-review-btn'
-                        onClick={handleDeleteReview}
-                        >Delete Review
-                        </button>
-                        </div>
-                        <button 
-                        className="edit-review"
-                        value={review.id}
-                        onClick={() => {
-                            setReviewId(review.id)
-                            updateReview()
-                        }}
-                        >Edit Review
-                        </button>
-                    
-                    </div>
+                    <Review 
+                    key={review.id}
+                    review={review}
+                    />
                 )
             })}
                     <div className="new-review">

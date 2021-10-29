@@ -65,7 +65,7 @@ export const thunkAddToCart = productInCart => async (dispatch)=> {
 }
 
 export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
-    const response = await fetch(`/api/carts/edit-product/${cartDetails.id}`, {
+    const response = await fetch(`/api/carts/edit-product/${cartDetails.product_id}`, {
         method:'PATCH',
         headers: {
             'Content-Type':'application/json'
