@@ -28,7 +28,7 @@ const LoginForm = () => {
   const demoUser = async (e) => {
     e.preventDefault();
     const weAreIn = await dispatch(login("demo@aa.io", "password"));
-    // console.log('==========> we are in')
+    console.log('==========> we are in')
     if (weAreIn) {
       history.push("/")
     }

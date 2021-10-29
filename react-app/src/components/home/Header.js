@@ -7,15 +7,16 @@ import LoginFormModal from './LoginFormModal';
 import SignUpFormModal from './SignupFormModal';
 import LoggedInNav from '../LoggedInNav';
 
+
 export default function Header() {
 
     const user = useSelector((state) => state.session.user);
 
-    // if(user) {
-    //     <LoggedInNav />
-    // } else {
+    if(user) {
+        <LoggedInNav />
+    } else {
         
-    // }
+    }
     return (
         <>
             <div className="main-nav-wrap">
@@ -26,19 +27,25 @@ export default function Header() {
                         <div className="search Icon"></div>
                     </div>
                     <div className="button-wrapper">
-                        <div className="login-button">
-                            <LoginFormModal />
-                        </div>
-                        <div className="signup-button">
-                            <SignUpFormModal />
-                        </div>
-                        
+                    {!user ?
+                        <>
+                            <div className="login-button">
+                                <LoginFormModal />
+                            </div>
+                            <div className="signup-button">
+                                <SignUpFormModal />
+                            </div>
+                        </>
+                     :  
+                        <>
                         <div className="greeting">
-                            {/* <h3 className="header">Hi, {user.first_name}</h3> */}
+                        <h3 className="header">Hi, {user.first_name}</h3>
+                        </div>
                         <div className="logout-button">
                             <LogoutButton />
                         </div>
-                        </div>
+                        </>
+                    }
                     </div>
                     <div className="shopping-cart">
                         <a href="/carts">

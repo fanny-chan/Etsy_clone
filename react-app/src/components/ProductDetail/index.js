@@ -6,7 +6,8 @@ import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 import Reviews from '../reviews';
 import Review from './review';
-
+import './ProductDetail.css'
+import AddReviewModal from './AddReviewModal';
 
 
 export const ProductDisplay = () => {
@@ -114,7 +115,7 @@ export const ProductDisplay = () => {
                     />
                 )
             })}
-                    <div className="new-review">
+                    {/* <div className="new-review">
                         <input
                             type="hidden"
                             min="1"
@@ -145,12 +146,15 @@ export const ProductDisplay = () => {
                         />
                         <button
                             onClick={postReview}
-                            className="submit-review-btn"
+                            className="add-a-review-button"
                             type="submit"
                             style={{height:"30px"}}
                         >
                             Add review
                         </button>
+                    </div> */}
+                    <div>
+                        <AddReviewModal />
                     </div>
             </div>
             

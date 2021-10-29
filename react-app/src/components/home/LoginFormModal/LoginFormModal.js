@@ -22,7 +22,6 @@ function LoginForm() {
   if (sessionUser) return (
     <Redirect to="/" />
   );
-
  
 
   return (
