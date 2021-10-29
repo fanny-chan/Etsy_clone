@@ -11,16 +11,17 @@ export default function Cart() {
     const [productId, setProductId] = useState(null)
     const [quantity, setQuantity] = useState({})
     
+    console.log('-----', quantity)
 
     useEffect(() => {
         dispatch(thunkGetCarts(sessionUser?.id))
     },[])
 
     useEffect(() => {
-        console.log('----', carts)
+        console.log('-CARTS---', carts)
         if (carts.length) {
             setQuantity(
-                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
+                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
             )
         } else {
             setQuantity([]);
