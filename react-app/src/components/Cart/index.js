@@ -11,16 +11,17 @@ export default function Cart() {
     const [productId, setProductId] = useState(null)
     const [quantity, setQuantity] = useState({})
     
+    console.log('-----', quantity)
 
     useEffect(() => {
         dispatch(thunkGetCarts(sessionUser?.id))
     },[])
 
     useEffect(() => {
-        console.log('----', carts)
+        console.log('-CARTS---', carts)
         if (carts.length) {
             setQuantity(
-                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}, {}))
+                carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
             )
         } else {
             setQuantity([]);
@@ -40,29 +41,40 @@ export default function Cart() {
         setQuantity(s => ({...s, [id]: evt}))
     }
     const productsSection = Object.values(carts)
-    
+    let totalPrice = 0;
+    const items = carts.map((cartItem) => {
+        const itemPrice = cartItem.productDetails.price * quantity[cartItem.productId]
+        totalPrice = itemPrice + totalPrice
+        return(
+       <>
+           <div>
+               <h2>{cartItem.productDetails.title}</h2>
+           </div>
+           <div>
+               <h2>{itemPrice}</h2>
+           </div>
+           <input
+           type="number"
+           value={quantity[cartItem.productId]}
+           onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
+           />
+           <button
+               className= "add-to-cart-button"
+               value={cartItem.productId}
+               onClick={handleDeleteProduct}
+               >Delete
+           </button>
+       </>
+       )});
 
     return (
+        <>
         <div className="all-products"> HI
-        {carts.map((cartItem) => 
-             (
-            <>
-                <div>
-                    <h2>{cartItem.productDetails.title}</h2>
-                </div>
-                <input
-                type="number"
-                value={quantity[cartItem.productId]}
-                onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
-                />
-                <button
-                    className= "add-to-cart-button"
-                    value={cartItem.productId}
-                    onClick={handleDeleteProduct}
-                    >Delete
-                </button>
-            </>
-            ))}
+        {items}
         </div>
+        <div>
+            Total:{totalPrice}
+        </div>
+        </>
     )
 }

@@ -11,6 +11,7 @@ import LoggedInNav from '../LoggedInNav';
 export default function Header() {
 
     const user = useSelector((state) => state.session.user);
+    const carts = useSelector((state) => state.carts)
 
     if(user) {
         <LoggedInNav />
@@ -48,6 +49,7 @@ export default function Header() {
                     }
                     </div>
                     <div className="shopping-cart">
+                        {carts.length}
                         <a href="/carts">
                             <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png" alt=""
                             className="shopping-cart-icon"/>
