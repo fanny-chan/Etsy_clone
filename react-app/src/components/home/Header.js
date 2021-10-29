@@ -32,14 +32,14 @@ export default function Header() {
                             <div className="login-button">
                                 <LoginFormModal />
                             </div>
-                            <div className="signup-button">
+                            {/* <div className="signup-button">
                                 <SignUpFormModal />
-                            </div>
+                            </div> */}
                         </>
                      :  
                         <>
                         <div className="greeting">
-                        <h3 className="header">Hi, {user.first_name}</h3>
+                        <h3 className="greeting-header">Hi, {user.first_name}!</h3>
                         </div>
                         <div className="logout-button">
                             <LogoutButton />
