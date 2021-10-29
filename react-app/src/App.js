@@ -14,6 +14,7 @@ import Reviews from './components/reviews';
 import AllProductDisplay from './components/ProductDisplay';
 import Cart from './components/Cart/index';
 import { thunkGetCarts } from './store/carts';
+import Splash from './components/home/SignupFormModal/splash';
 
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
       {/* <NavBar /> */}
       <Header />
       <Switch>
+        <Route path='/' exact={true}>
+          <Splash />
+          <AllProductDisplay/>
+        </Route>
         {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -49,15 +54,15 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        {/* <Route path='/' exact={true} >
           <h1>My Home Page</h1>
           <AllProductDisplay/>
-        </Route>
+        </Route> */}
         <Route path='/products/:productId'>
           <ProductDisplay />
         </Route>
         <ProtectedRoute path='/products'>
-          {/* <AllProductDisplay/> */}
+          <AllProductDisplay/>
         </ProtectedRoute>
         <Route path='/carts'>
           <h2>Carts</h2>
