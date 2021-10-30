@@ -48,12 +48,15 @@ export default function Header() {
                         </>
                     }
                     </div>
-                    <div className="shopping-cart">
-                        {carts.length}
-                        <a href="/carts">
-                            <img src="https://toppng.com/uploads/preview/shopping-cart-png-image-shopping-cart-icon-sv-11562865326ta92uix1ak.png" alt=""
-                            className="shopping-cart-icon"/>
+                    <div className="shopping-cart-wrapper">
+                        <a href="/carts" >
+                            <img className="shopping-cart-icon"src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png" alt=""/>
+                            {/* <button  
+                            className="shopping-cart-icon"><i class="fas fa-shopping-cart"></i></button> */}
                         </a>
+                    </div>
+                    <div className="shopping-cart-length">
+                        {carts.length}
                     </div>
                     
                 </div>

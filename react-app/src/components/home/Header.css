@@ -1,7 +1,23 @@
+.shopping-cart-wrapper {
+    display: flex;
+    align-items: center;
+}
 .shopping-cart-icon {
-    border-radius: 50%;
     width: 32px;
     height: 32px;
+    background-color: white;
+}
+.shopping-cart-length {
+    position: absolute;
+    top: 6px;
+    right: 25px;
+    width: 20px;
+    height: 17px;
+    border-radius: 50%;
+    background: #faa077;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 2px;
 }
 
 .logo {
