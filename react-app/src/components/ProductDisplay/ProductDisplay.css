@@ -1,16 +1,16 @@
 .product-card-container {
     display: flex;
     justify-content: space-around;
+    flex-flow: wrap;
 }
 .product-card {
-    padding-top: 120px;
+    padding-top: 100px;
     word-wrap: break-word;
     width: 200px;
     height: 350px;
     box-sizing: border-box;
     border-radius: 15px;
     border: none;
-    margin-bottom: 8px;
     
 }
 .product-title {
