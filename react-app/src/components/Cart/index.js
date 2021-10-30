@@ -11,7 +11,6 @@ export default function Cart() {
     const [productId, setProductId] = useState(null)
     const [quantity, setQuantity] = useState({})
     
-    console.log('-----', quantity)
 
     useEffect(() => {
         dispatch(thunkGetCarts(sessionUser?.id))
@@ -27,6 +26,7 @@ export default function Cart() {
             setQuantity([]);
         }
     },[carts])
+
 
     
     // DELETE ITEMS FROM CART
@@ -70,7 +70,7 @@ export default function Cart() {
 
     return (
         <>
-        <div className="all-products"> HI
+        <div className="all-products"> 
         {items}
         </div>
         <div>
