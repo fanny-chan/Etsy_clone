@@ -1,6 +1,8 @@
 .product-card-container {
     display: flex;
     justify-content: space-around;
+    flex-flow: wrap;
+    margin-right: 50px;
 }
 .product-card {
     padding-top: 120px;
@@ -58,3 +60,27 @@
     align-items: center;
     border: solid 1px rgb(34,34,34,0.15);
 }
+.what-is {
+    display: flex;
+    justify-content: center;
+    background-color: #fdebd2;
+    margin-block: 0;
+    align-items: center;
+    color: #444343;;
+}
+.craftsi {
+    background: #fdebd2;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    color:#444343;
+}
+.craftsi>h2{
+    font-size: 32px;
+    font-weight: 400;
+    color:#444343;
+}
+
