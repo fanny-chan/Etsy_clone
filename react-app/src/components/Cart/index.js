@@ -41,6 +41,7 @@ export default function Cart() {
         setQuantity(s => ({...s, [id]: evt}))
     }
     const productsSection = Object.values(carts)
+    
     let totalPrice = 0;
     const items = carts.map((cartItem) => {
         const itemPrice = cartItem.productDetails.price * quantity[cartItem.productId]
