@@ -18,14 +18,17 @@ export default function Cart() {
 
     useEffect(() => {
         console.log('-CARTS---', carts)
+        const q = carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
+        console.log('-----Q----', q)
         if (carts.length) {
             setQuantity(
                 carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
-            )
+                )
         } else {
             setQuantity([]);
         }
     },[carts])
+
 
 
     
@@ -40,6 +43,7 @@ export default function Cart() {
         dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser.id}))
         setQuantity(s => ({...s, [id]: evt}))
     }
+    
     const productsSection = Object.values(carts)
     
     let totalPrice = 0;

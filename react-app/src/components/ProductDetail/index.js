@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
-import Reviews from '../reviews';
 import Review from './review';
 import './ProductDetail.css'
 import AddReviewModal from './AddReviewModal';
@@ -85,79 +84,66 @@ export const ProductDisplay = () => {
         };
         dispatch(thunkEditReviewDetails(updatedContent))
     };
+
+    const productsSection = Object.values(product);
+
     return (
     <>
-        <div className="product-page-wrapper">
-            <div className="product-container">
-                <h2 className="product-title">{product?.title}</h2>
-
-                <h2 className="review-title"></h2>
-                    <input
-                        type="number"
-                        min="1"
-                        required
-                        value ={quantity}
-                        onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
-                    />
-                <button
-                className= "add-to-cart-button"
-                onClick={handleAddToCart}
-                >Add to Cart
-                </button>
-            </div>
-            <div className="comments">
-            {specificReview.map((review) => {
-                return (
-                    <Review 
-                    key={review.id}
-                    review={review}
-                    />
-                )
-            })}
-                    {/* <div className="new-review">
-                        <input
-                            type="hidden"
-                            min="1"
-                            required
-                            value={user_id}
-                            />
-                        <input
-                            type="hidden"
-                            min="1"
-                            required
-                            value={productId}
-                            />
-                            <select 
-                            onChange={updateRating}
-                            className="review-rating">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <textarea
-                        className="new-review"
-                        style={{minHeight:"50px"}}
-                        placeholder="Add a review"
-                        value={reviewContent}
-                        onChange={(e) => setReviewContent(e.target.value)}
-                        />
-                        <button
-                            onClick={postReview}
-                            className="add-a-review-button"
-                            type="submit"
-                            style={{height:"30px"}}
-                        >
-                            Add review
-                        </button>
-                    </div> */}
-                    <div>
-                        <AddReviewModal />
+        {/* {productsSection.map((product) => ( */}
+            <div className="product-page-wrapper">
+                <div className="product-container-left">
+                    <div className="image-container">
+                        {/* <div className="vertical-images"></div> */}
+                        <div className="main-image">
+                            {/* {product.media_url} */}
+                            <img className="image"src="https://i.etsystatic.com/10204022/r/il/18e97e/2550873428/il_794xN.2550873428_rvbc.jpg" alt=""/>
+                        </div>
                     </div>
+                    {/* ) */}
+                    <div className="reviews-container">
+                        <h2 className="review-title">Reviews</h2>
+                        <div className="comments">
+                        {specificReview.map((review) => {
+                            return (
+                                <Review 
+                                key={review.id}
+                                review={review}
+                                />
+                            )
+                        })}
+                            <div>
+                                <AddReviewModal />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="product-container-right">
+                    <p className="username">Seller: {product?.user?.username}</p>
+                    <h1 className="product-title-details">{product?.title}</h1>
+                        <p className="price">${product?.price}</p>
+                    <div className="quantity">
+                        <span className="qty-tag">Quantity:</span>
+                        <input  
+                            className="quantity-input"
+                            type="number"
+                            min="1"
+                            required
+                            value ={quantity}
+                            onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
+                            />
+                        <button
+                        className= "add-to-cart-button"
+                        onClick={handleAddToCart}
+                        >Add to Cart
+                        </button>
+                        
+                    </div>
+                    <div className="description-tag">Description</div>
+                    <div className="product-description-right">{product?.description}</div>
+                </div>
+                
             </div>
-            
-        </div>
     </>
     )
 }
