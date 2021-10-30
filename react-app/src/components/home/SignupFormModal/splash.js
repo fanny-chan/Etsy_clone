@@ -29,6 +29,15 @@ export default function Splash() {
                     </div>
 
                 </div>
+                {/* <div className="photo-label">
+                    <div>Advent calendars</div>
+                    <div>Gifts for home</div>
+                    <div>Gifts for him</div>
+                    <div>Gifts for her</div>
+                    <div>Gifts for kids</div>
+                    
+                </div> */}
+
             </div>
 
         )

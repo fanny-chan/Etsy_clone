@@ -14,7 +14,7 @@ export default function ProductCard() {
     }, [dispatch])
 
     return (
-        <div className="product-card-container">         
+        <div className="product-card-container">      
             {productsSection.map((product) => (
                 <div className="product-card"> 
                     <div className="product-pic"style={{backgroundImage:`url(${product.media_url})`}}>
