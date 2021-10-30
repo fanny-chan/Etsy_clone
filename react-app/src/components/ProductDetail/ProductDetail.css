@@ -1,10 +1,20 @@
+.review-block {
+    color: #595959;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 18px;
+    padding: 5px;
+}
+
 .review-header {
-    text-decoration: underline;
     margin-right: 10px;
     color: #595959;
     font-size: 13px;
     font-weight: 300;
-    cursor: pointer;
+    display: flex;
+}
+.review-date {
+    padding-left: 15px;
 }
 
 .review-content {
@@ -13,6 +23,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding-left: 48px;
+    width: 60%;
 }
 
 .add-review-form {
@@ -21,4 +32,20 @@
     box-sizing: border-box;
     color: #f2f1f1;
     background: #222323;
+}
+.review-btns {
+    display: flex;
+}
+button {
+    border-radius: 200px;
+    border: 0;
+    background-color: transparent;
+}
+
+.delete-review-btn:hover {
+    background: rgb(226, 225, 225);
+}
+
+.edit-review-btn:hover{
+    background: rgb(226, 225, 225);
 }

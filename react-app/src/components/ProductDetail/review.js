@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkEditReviewDetails, thunkDeleteReview} from '../../store/reviews';
+import StarRatingComponent from 'react-star-rating-component'
 import './ProductDetail.css'
 
 
@@ -24,47 +25,49 @@ export default function Review({review}) {
             id: reviewId,
             content:reviewContent
         };
-        console.log('-------',updatedContent)
         dispatch(thunkEditReviewDetails(updatedContent))
     };
     
     return (
         <div>
-            <div key={review.id}
-                    className="review-whole">
-                        <div className="review-header"> {review?.user?.username}
-                        </div>
-                        <div className="review-date">{review?.created_at}</div>
-                        <div className="review-rating">{review?.rating}</div>
-                        <div className="review-content"> {review?.content}
-                        <input
-                        className="review-input"
-                        name={review.id}
-                        type="text"
-                        placeholder="edit your review"
-                        value={reviewContent}
-                        onChange={updateContent}
-                        />
-                        </div>
-                        <div className='delete-review'>
-                        <button 
-                        value={review.id}
-                        className='delete-review-btn'
-                        onClick={handleDeleteReview}
-                        >Delete Review
-                        </button>
-                        </div>
-                        <button 
-                        className="edit-review"
-                        value={review.id}
-                        onClick={() => {
-                            setReviewId(review.id)
-                            updateReview()
-                        }}
-                        >Edit Review
-                        </button>
+            <div key={review.id} className="review-whole">
+                <div className="review-block">
+                    <div className="review-header"> {review?.user?.username}
+                    <div className="review-date">{review?.created_at}</div>
+                    </div>
+                    <div className="review-rating">Rating:{review?.rating}</div>
+                    <div className="review-content"> {review?.content}
+                    <input
+                    className="review-input"
+                    name={review.id}
+                    type="text"
+                    placeholder="edit your review"
+                    value={reviewContent}
+                    onChange={updateContent}
+                    />
+                    </div>
+                    <div className="review-btns">
+                    <div className='delete-review'>
+                    <button 
+                    value={review.id}
+                    className='delete-review-btn'
+                    onClick={handleDeleteReview}
+                    >Delete
+                    </button>
+                    </div>
+                    <button 
+                    className="edit-review-btn"
+                    value={review.id}
+                    onClick={() => {
+                        setReviewId(review.id)
+                        updateReview()
+                    }}
+                    >Edit Review
+                    </button>
+                    </div>
+                </div>
                     
-                    </div>
-                    </div>
+            </div>
+        </div>
     )
 }
