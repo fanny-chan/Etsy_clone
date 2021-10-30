@@ -8,6 +8,7 @@ export default function ProductCard() {
     const dispatch = useDispatch();
     const products = useSelector(state => state?.products)
     const productsSection = Object.values(products);
+    
     useEffect(() => {
         dispatch(thunkGetAllProducts())
     }, [dispatch])
