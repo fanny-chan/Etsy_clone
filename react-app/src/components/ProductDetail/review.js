@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkEditReviewDetails, thunkDeleteReview} from '../../store/reviews';
+import StarRatingComponent from 'react-star-rating-component'
 import './ProductDetail.css'
 
 
