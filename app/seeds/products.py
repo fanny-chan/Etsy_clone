@@ -40,11 +40,11 @@ def seed_products():
     )
     product5 = Product(
     seller_id=2,
-    title="Ornament Advent Calendar- Lasercut Birch Wood and Paper (24 ornaments)",
-    media_url="https://www.etsy.com/listing/465148748/ornament-advent-calendar-lasercut-birch?ref=anchored_listing&pro=1&frs=1",
+    title="Wooden Christmas Advent Calendar with LED Light Up and 24 Drawers",
+    media_url="https://i.etsystatic.com/31584040/r/il/0a8c14/3405978176/il_794xN.3405978176_avu5.jpg",
     price=93.62,
     description=
-    "New ornaments for 2021!* Unique ornament advent calendar! Comes with 24 unique lasercut birch ornaments (tree NOT included), each hidden behind a red paper door. Simply lift the paper door each day until Christmas to reveal the ornament underneath. Pop and wiggle the ornament out from the surrounding wood, and hang on your tree.",
+    "There is no better way to count down the days until Christmas than with a beautifully decorated and carved wood Christmas advent calendar. This calendar, featuring elegant carvings and 24 numbered little treasure boxes, that are the perfect way to allow children to engage in the excitement of a holiday countdown. Store candy, toys, money and more in each box and watch the surprise on their faces each morning. Put 2 AA batteries (not included) and see the beautiful Christmas scene light up.-Wooden Decorative Calendar: This Christmas countdown features 24 drawers that are marked with numbers consecutively to help count down the days until Christmas.Christmas Decorations: A fine wood finish compliments the silhouettes of Santa Claus, reindeers, and a beautiful carving of a Christmas scene; the Christmas village features wooden houses, pine trees, a street lamp, a dog, a bench, and a person in festive clothing",
     quantity_available =60
     )
     product6 = Product(
@@ -92,6 +92,24 @@ def seed_products():
     "Welcome friends and family into your home all year round with this farmhouse Inspired wreath!This lamb’s ear wreath is made of high quality faux lamb’s ear on a grapevine wreath base. Wreaths are measured from leaf tip to leaf tip once florals are on and finished.This wreath would look great on your front door, window, bed, etc. The possibilities are endless.Wreaths also make great gifts for Christmas, birthdays, weddings, and housewarming.",
     quantity_available =15
     )
+    product11 = Product(
+    seller_id=3,
+    title="Name Puzzle with Animals - Woodland Nursery - Baby Boy Gift - 3rd Birthday - Educational Toy - Toddler Toys",
+    media_url="https://i.etsystatic.com/22537583/r/il/20f9fc/3277015502/il_794xN.3277015502_edq4.jpg",
+    price=5.50,
+    description=
+    "The most unique wooden toys for little ones. 🦊-Looking for baby gifts or amazing nursery decor? Here it is! Name puzzle is such a meaningful and personalized wooden toy. It helps develop motor skills of your baby and serves as a wonderful decoration! Check out the store for more designs and message us for custom ones.It is great gift idea for 1st Birthday (and 2nd, and 3rd), Christmas, Thanksgiving, Baby Shower and no occasion at all for baby girl, baby boy, toddlers and kids.",
+    quantity_available =14
+    )
+    product12 = Product(
+    seller_id=3,
+    title="Pumpkin 1st Birthday Outfit Girl, First Birthday Outfit , Pumpkin One, Fall First Birthday, 1st Birthday Girl Dress ( PBD)",
+    media_url="https://i.etsystatic.com/11577357/r/il/95898a/3355929181/il_794xN.3355929181_aou7.jpg",
+    price=5.50,
+    description=
+    "Pumpkin 1st Birthday Outfit Girl, Pumpkin Birthday Outfit, First Birthday Outfit , Pumpkin One, Fall First Birthday, 1st Birthday Girl Dress.Tutu is available in 3 colors: pink, orange, and burgundy (please mention in the notes section which color you would like) Modern Design !!! Personalized with the name of your little pumpkin !! Get this sparkling outfit made in glittering gold and orange !!",
+    quantity_available =10
+    )
 
     db.session.add(product1)
     db.session.add(product2)
@@ -103,6 +121,8 @@ def seed_products():
     db.session.add(product8)
     db.session.add(product9)
     db.session.add(product10)
+    db.session.add(product11)
+    db.session.add(product12)
 
     db.session.commit()
 
