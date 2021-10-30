@@ -2,10 +2,12 @@ import { useParams } from 'react-router';
 import { useDispatch,useSelector } from 'react-redux';
 import { React, useState, useEffect} from 'react';
 import { thunkDeleteProductFromCart , thunkEditQuantityInCart, thunkGetCarts } from '../../store/carts';
+import { NavLink } from 'react-router-dom';
 
 export default function Cart() {
     const sessionUser = useSelector((state) => state.session.user);
     const carts = useSelector(state => state.carts)
+    const products= useSelector(state => state.products)
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
     const [productId, setProductId] = useState(null)
@@ -44,16 +46,17 @@ export default function Cart() {
         setQuantity(s => ({...s, [id]: evt}))
     }
     
-    const productsSection = Object.values(carts)
+    const productsSection = Object.values(products)
     
     let totalPrice = 0;
     const items = carts.map((cartItem) => {
         const itemPrice = cartItem.productDetails.price * quantity[cartItem.productId]
         totalPrice = itemPrice + totalPrice
         return(
-       <>
+       <>  
            <div>
-               <h2>{cartItem.productDetails.title}</h2>
+                {/* <NavLink className="product-title" to={`/products/${carts.productId}`}>{cartItem.productDetails.title}</NavLink> */}
+                <h2>{cartItem.productDetails.title}</h2>
            </div>
            <div>
                <h2>{itemPrice}</h2>
