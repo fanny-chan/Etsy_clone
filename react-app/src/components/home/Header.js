@@ -66,15 +66,10 @@ export default function Header() {
                 <ul>
                     <li><a href="https://github.com/fanny-chan">Github</a></li>
                     <li><a href="https://www.linkedin.com/in/fanny-chan-892941113/">LinkedIn</a></li>
-                    {/* <li><a href="/">Clothing & Shoes</a></li>
-                    <li><a href="/">Home & Living</a></li>
-                    <li><a href="/">Wedding & Party</a></li>
-                    <li><a href="/">Toys & Entertainment</a></li>
-                    <li><a href="/">Art & Collectibles</a></li>
-                    <li><a href="/">Craft Supplies</a></li>
-                    <li><a href="/">Gifts & Gift Cards</a></li> */}
+                    
                 </ul>
             </div>
+            <div className="end-of-link"></div>
         </>
     )
 }

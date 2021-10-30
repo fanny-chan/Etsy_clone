@@ -39,6 +39,7 @@
     justify-content: center;
     height: 55px;
     top: 0;
+    padding-top: 10px;
 
 }
 
@@ -115,6 +116,7 @@
     padding-left: 36px;
     padding-right:36px;
     font-family: Arial, Helvetica, sans-serif;
+    margin-block-start: 0;
 }
 
 .end-of-link {
