@@ -108,9 +108,12 @@
 .logout-button:hover {
     background-color: rgb(226, 223, 223);
 }
+.link-navbar {
+    width: 20%;
+}
 .link-navbar>ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: baseline;
     flex-wrap: wrap;
     padding-left: 36px;

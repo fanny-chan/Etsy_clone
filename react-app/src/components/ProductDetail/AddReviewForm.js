@@ -2,6 +2,7 @@ import { useEffect, useState, React } from 'react';
 import { thunkCreateReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
+import './AddReviewForm.css'
 
 export default function AddReviewForm({...props}) {
     const dispatch = useDispatch();
@@ -32,7 +33,8 @@ export default function AddReviewForm({...props}) {
 
     return (
         <div>
-            <div className="new-review">
+            <div className="edit-review-header">Add a review</div>
+            <div className="new-review-form">
                         <input
                             type="hidden"
                             min="1"

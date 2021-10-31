@@ -43,12 +43,12 @@
 
 .review-btns {
     display: flex;
+    margin-top: 10px;
 }
 button {
     border-radius: 200px;
     border: 0;
     background-color: transparent;
-    width: 73%;
 }
 
 .delete-review-btn:hover {
