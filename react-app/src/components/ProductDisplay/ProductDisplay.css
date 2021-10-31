@@ -18,6 +18,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: arial;
 
 }
 .product-description {
@@ -58,6 +59,7 @@
     justify-content: center;
     align-items: center;
     border: solid 1px rgb(34,34,34,0.15);
+    font-family: arial;
 }
 .what-is {
     display: flex;
@@ -66,6 +68,10 @@
     margin-block: 0;
     align-items: center;
     color: #444343;;
+}
+
+.what-is>h2 {
+    font-family: Arial, Helvetica, sans-serif;
 }
 .craftsi {
     background: #fdebd2;
@@ -76,6 +82,7 @@
     display: flex;
     flex-direction: row;
     color:#444343;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .craftsi>h2{
     font-size: 32px;

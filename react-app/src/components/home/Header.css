@@ -9,7 +9,6 @@
 }
 .shopping-cart-length {
     position: absolute;
-    top: 6px;
     right: 25px;
     width: 20px;
     height: 17px;
@@ -95,6 +94,7 @@
 .greeting-header {
     font-size: 15px;
     white-space: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .logout-button {
