@@ -7,7 +7,7 @@ export default function AddReviewForm() {
     const dispatch = useDispatch();
     const {productId} = useParams()
     const [reviewContent, setReviewContent] = useState("");
-    const [reviewRating, setReviewRating] = useState("");
+    const [reviewRating, setReviewRating] = useState(1);
     const product = useSelector(state => state?.products)
     const user_id = useSelector((state) => {
         return state.session.user?.id
@@ -26,6 +26,7 @@ export default function AddReviewForm() {
     
 
     const updateRating = (e) => setReviewRating(e.target.value)
+
     return (
         <div>
             <div className="new-review">
@@ -51,11 +52,13 @@ export default function AddReviewForm() {
                             <option>5</option>
                         </select>
                         <textarea
+                        maxLength="500"
                         className="new-review"
                         style={{minHeight:"50px"}}
                         placeholder="Add a review"
                         value={reviewContent}
                         onChange={(e) => setReviewContent(e.target.value)}
+                        required
                         />
                         <button
                             onClick={postReview}
