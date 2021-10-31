@@ -75,6 +75,7 @@ export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
     if (response.ok) {
         const editedCartObj = await response.json()
         dispatch(editQuantityOfProduct(editedCartObj))
+
         return editedCartObj
     }
 }
@@ -109,9 +110,9 @@ const cartReducer = (state = initialState, action) => {
             // const toChange = newState.findIndex(product => product.id === action.editCartObj.id)
             // newState[toChange].quantity = action.editCartObj.quantity
             return state.reduce((acc, product) => [
-                ...acc, product.productId === action.editCartObj.id ? {
+                ...acc, product.productId === action.editCartObj.product_id ? {
                     ...product,
-                    quantity: action.editCartObj.id
+                    quantity: action.editCartObj.quantity
                 }: product ],[])
         case DELETE_PRODUCT_FROM_CART:
            return [...state.filter(product => product.productId !== action.deletedFromCartObj.id)] 

@@ -63,7 +63,6 @@ function App() {
           <AllProductDisplay/>
         </ProtectedRoute>
         <Route path='/carts'>
-          <h2>Carts</h2>
           <Cart />
         </Route>
       </Switch>
