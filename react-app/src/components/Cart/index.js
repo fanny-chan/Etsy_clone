@@ -22,7 +22,7 @@ export default function Cart() {
     useEffect(() => {
         console.log('-CARTS---', carts)
         const q = carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
-        console.log('-----Q----', q)
+
         if (carts.length) {
             setQuantity(
                 carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
@@ -80,7 +80,7 @@ export default function Cart() {
                         </button>
                     </div>
                     <div className="price-cart-page">
-                    <h2>{itemPrice}</h2>
+                    <h2>${itemPrice}</h2>
                     </div>
                 </div>
             </div>
