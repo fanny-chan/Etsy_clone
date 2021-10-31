@@ -38,14 +38,15 @@ export default function Header() {
                             </div> */}
                         </>
                      :  
-                        <>
+                        (<>
                         <div className="greeting">
                         <h3 className="greeting-header">Hi, {user.first_name}!</h3>
                         </div>
                         <div className="logout-button">
                             <LogoutButton />
                         </div>
-                        </>
+                        </>)
+                    
                     }
                     </div>
                     <div className="shopping-cart-wrapper">

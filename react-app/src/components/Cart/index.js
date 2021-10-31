@@ -20,7 +20,6 @@ export default function Cart() {
     },[])
 
     useEffect(() => {
-        console.log('-CARTS---', carts)
         const q = carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
 
         if (carts.length) {
@@ -89,9 +88,8 @@ export default function Cart() {
 
         return (
             <>
-            <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
-                <div id="cart-header">{carts.length} Items in your cart</div>
-            </div>
+            <div id="cart-header">{carts.length} Items in your cart</div>
+           
             <div className="all-products"> 
             {items}
             </div>

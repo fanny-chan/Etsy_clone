@@ -14,6 +14,8 @@
     letter-spacing: 0.5px;
     color: #424343;
     font-weight: lighter;
+    margin-left: 10px;
+    padding-top: 20px;
 }
 .qty-cart-page {
     width: 100px;
@@ -35,9 +37,7 @@
     font-weight: 300;
     color: #2a2b2b;
 }
-#cart-header {
-    padding-top: 20px;
-}
+
 .inner-title {
     display: flex;
     font-weight: lighter;

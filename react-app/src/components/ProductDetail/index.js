@@ -1,23 +1,24 @@
 import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 import Review from './review';
 import './ProductDetail.css'
 import AddReviewModal from './AddReviewModal';
+import LoginFormModalAddToCart from '../home/LoginFormModal/AddToCartLoginModal';
+
 
 
 export const ProductDisplay = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {productId} = useParams()
     const product = useSelector(state => state?.products)
     const reviews = useSelector(state => state?.reviews)
-    const sessionUser = useSelector((state) => state.session.user);
-    const user_id = useSelector((state) => {
-        return state.session.user?.id
-    })
+    const sessionUser = useSelector(state => state.session.user);
+    const user_id = useSelector(state => state.session.user?.id);
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
     const [reviewId, setReviewId] = useState(0);
@@ -27,6 +28,7 @@ export const ProductDisplay = () => {
     const user = useSelector(state => {
         return state.session?.user
     })
+
 
     const handleAddToCart = () => {
         dispatch(thunkAddToCart({
@@ -86,23 +88,16 @@ export const ProductDisplay = () => {
     };
 
     return (
-    <>
-        {/* {productsSection.map((product) => ( */}
+        <>
             <div className="product-page-wrapper">
                 <div className="product-container-left">
                     <div className="image-container">
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
-                            {/* {product.media_url} */}
-                            {/* <img className="image"src={product?.media_url} alt=""/> */}
                             <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
                             </div>
-
-                            {/* <img className="image"src={product?.media_url} alt=""/> */}
-
                         </div>
-                    </div>
-                    {/* ) */}
+                    </div>                   
                     <div className="reviews-container">
                         <h2 className="review-title">Reviews</h2>
                         <div className="comments">
@@ -135,20 +130,23 @@ export const ProductDisplay = () => {
                             value ={quantity}
                             onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
                             />
-                        <button
+                        {user ? 
+                        (<button
                         className= "add-to-cart-button"
                         onClick={handleAddToCart}
                         >Add to Cart
-                        </button>
-                        
+                        </button>)
+                        :
+                        <LoginFormModalAddToCart /> 
+                        }          
                     </div>
                     <div className="description-tag">Description</div>
-                    <div className="product-description-right">{product?.description}</div>
+                    <div className="product-description-right">{product?.description}
+                    </div>
                 </div>
-                </div>
-            
-            
-    </>
+            </div>
+           
+        </>
     )
 }
 
