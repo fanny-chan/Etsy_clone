@@ -56,9 +56,9 @@ export default function Cart() {
         totalPrice = itemPrice + totalPrice
         return(
         <>  
-            <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
+            {/* <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
                 <div id="cart-header">{carts.length} Items in your cart</div>
-            </div>
+            </div> */}
             <div className="cart-page-container">  
                 <div className="product-image">
                 </div>   
@@ -89,11 +89,15 @@ export default function Cart() {
 
         return (
             <>
+            <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
+                <div id="cart-header">{carts.length} Items in your cart</div>
+            </div>
             <div className="all-products"> 
             {items}
             </div>
-            <div>
-                Total:{totalPrice}
+            <div className="cart-div-seperator"></div>
+            <div className="total-price-cart">
+                Total: ${totalPrice}
         </div>
         </>
     )

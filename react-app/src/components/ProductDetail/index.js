@@ -85,8 +85,6 @@ export const ProductDisplay = () => {
         dispatch(thunkEditReviewDetails(updatedContent))
     };
 
-    const productsSection = Object.values(product);
-
     return (
     <>
         {/* {productsSection.map((product) => ( */}
@@ -96,7 +94,12 @@ export const ProductDisplay = () => {
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
                             {/* {product.media_url} */}
-                            <img className="image"src={product?.media_url} alt=""/>
+                            {/* <img className="image"src={product?.media_url} alt=""/> */}
+                            <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
+                            </div>
+
+                            {/* <img className="image"src={product?.media_url} alt=""/> */}
+
                         </div>
                     </div>
                     {/* ) */}
@@ -142,8 +145,9 @@ export const ProductDisplay = () => {
                     <div className="description-tag">Description</div>
                     <div className="product-description-right">{product?.description}</div>
                 </div>
-                
-            </div>
+                </div>
+            
+            
     </>
     )
 }
