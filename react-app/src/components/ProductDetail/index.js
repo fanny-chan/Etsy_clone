@@ -134,6 +134,8 @@ export const ProductDisplay = () => {
                             <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
                             </div>
 
+                            <img className="image"src={product?.media_url} alt=""/>
+
                         </div>
                     </div>
                     {/* ) */}
