@@ -3,7 +3,7 @@ import { thunkCreateReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 
-export default function AddReviewForm() {
+export default function AddReviewForm({...props}) {
     const dispatch = useDispatch();
     const {productId} = useParams()
     const [reviewContent, setReviewContent] = useState("");
@@ -21,11 +21,14 @@ export default function AddReviewForm() {
             content:reviewContent,
             rating:reviewRating
         }; 
-        let createdReview = await dispatch(thunkCreateReview(newReview))
+        let createdReview = await dispatch
+        (thunkCreateReview(newReview))
+        props.onClose()
     }
     
 
     const updateRating = (e) => setReviewRating(e.target.value)
+
 
     return (
         <div>
@@ -65,6 +68,7 @@ export default function AddReviewForm() {
                             className="add-a-review-button"
                             type="submit"
                             style={{height:"30px"}}
+                           
                         >
                             Add review
                         </button>

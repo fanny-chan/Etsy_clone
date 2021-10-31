@@ -7,6 +7,8 @@ import './ProductDetail.css'
 
 export default function AddReviewModal({review}) {
     const [showModal, setShowModal] = useState(false);
+    const onClose = () => setShowModal(false)
+
     return (
         <>
         <div>
@@ -19,7 +21,7 @@ export default function AddReviewModal({review}) {
         </div>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <AddReviewForm review={review}/>
+              <AddReviewForm onClose={onClose} review={review}/>
             </Modal>
           )}
         </>
