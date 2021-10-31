@@ -87,42 +87,6 @@ export const ProductDisplay = () => {
 
     return (
     <>
-        <div className="product-page-wrapper">
-            <div className="product-container">
-                <h2 className="product-title">{product?.title}</h2>
-
-                    <input
-                        type="number"
-                        min="1"
-                        required
-                        value ={quantity}
-                        onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
-                    />
-                <button
-                className= "add-to-cart-button"
-                onClick={handleAddToCart}
-                >Add to Cart
-                </button>
-            </div>
-            <div className="comments">
-            {specificReview.map((review) => {
-                return (
-                    <Review 
-                    key={review.id}
-                    review={review}
-                    />
-                )
-            })}
-                    {/* <div className="new-review">
-                        <input
-                            type="hidden"
-                            min="1"
-                            required
-                            value={user_id}
-                            />
-                        <input
-                            type="hidden"
-
         {/* {productsSection.map((product) => ( */}
             <div className="product-page-wrapper">
                 <div className="product-container-left">
@@ -134,7 +98,7 @@ export const ProductDisplay = () => {
                             <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
                             </div>
 
-                            <img className="image"src={product?.media_url} alt=""/>
+                            {/* <img className="image"src={product?.media_url} alt=""/> */}
 
                         </div>
                     </div>
@@ -182,7 +146,8 @@ export const ProductDisplay = () => {
                     <div className="product-description-right">{product?.description}</div>
                 </div>
                 </div>
-            </div>
+            
+            
     </>
     )
 }
