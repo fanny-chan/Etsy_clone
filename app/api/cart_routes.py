@@ -47,6 +47,7 @@ def edit_cart_item(id):
         cart = Cart.query.filter(Cart.product_id == id , Cart.user_id == current_user.id).first()
         print("\n\n", "CART:" ,cart, "\n\n")
         cart.quantity = form.data['quantity']
+        print("\n\n", "Quantity:" ,cart.to_dict(), "\n\n")
         db.session.commit()
         return cart.to_dict()
 

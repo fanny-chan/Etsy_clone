@@ -9,7 +9,6 @@ export default function Splash() {
 
     return (
             <div>
-                <div className="end-of-link"></div>
                 <div className="script">Start your holiday prep with the most meaningful gifts.</div>
                 <div className="circle-images-wrapper">
 

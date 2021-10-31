@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
-import Reviews from '../reviews';
 import Review from './review';
 import './ProductDetail.css'
 import AddReviewModal from './AddReviewModal';
@@ -83,12 +82,14 @@ export const ProductDisplay = () => {
             id: reviewId,
             content:reviewContent
         };
-        console.log('-------',updatedContent)
         dispatch(thunkEditReviewDetails(updatedContent))
     };
+
+    const productsSection = Object.values(product);
+
     return (
     <>
-<<<<<<< Updated upstream
+
         <div className="product-page-wrapper">
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
@@ -125,7 +126,7 @@ export const ProductDisplay = () => {
                             />
                         <input
                             type="hidden"
-=======
+
         {/* {productsSection.map((product) => ( */}
             <div className="product-page-wrapper">
                 <div className="product-container-left">
@@ -133,9 +134,12 @@ export const ProductDisplay = () => {
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
                             {/* {product.media_url} */}
+
                             {/* <img className="image"src={product?.media_url} alt=""/> */}
                             <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
                             </div>
+
+                            <img className="image"src={product?.media_url} alt=""/>
 
                         </div>
                     </div>
@@ -167,42 +171,23 @@ export const ProductDisplay = () => {
                         <input  
                             className="quantity-input"
                             type="number"
->>>>>>> Stashed changes
                             min="1"
                             required
-                            value={productId}
+                            value ={quantity}
+                            onChange={e => setQuantity(Number(e?.target?.value) ?? 1)}
                             />
-                            <select 
-                            onChange={updateRating}
-                            className="review-rating">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                        <textarea
-                        className="new-review"
-                        style={{minHeight:"50px"}}
-                        placeholder="Add a review"
-                        value={reviewContent}
-                        onChange={(e) => setReviewContent(e.target.value)}
-                        />
                         <button
-                            onClick={postReview}
-                            className="add-a-review-button"
-                            type="submit"
-                            style={{height:"30px"}}
-                        >
-                            Add review
+                        className= "add-to-cart-button"
+                        onClick={handleAddToCart}
+                        >Add to Cart
                         </button>
-                    </div> */}
-                    <div>
-                        <AddReviewModal />
+                        
                     </div>
+                    <div className="description-tag">Description</div>
+                    <div className="product-description-right">{product?.description}</div>
+                </div>
+                
             </div>
-            
-        </div>
     </>
     )
 }

@@ -1,7 +1,22 @@
+.shopping-cart-wrapper {
+    display: flex;
+    align-items: center;
+}
 .shopping-cart-icon {
-    border-radius: 50%;
     width: 32px;
     height: 32px;
+    background-color: white;
+}
+.shopping-cart-length {
+    position: absolute;
+    right: 25px;
+    width: 20px;
+    height: 17px;
+    border-radius: 50%;
+    background: #faa077;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 2px;
 }
 
 .logo {
@@ -23,6 +38,7 @@
     justify-content: center;
     height: 55px;
     top: 0;
+    padding-top: 10px;
 
 }
 
@@ -78,6 +94,7 @@
 .greeting-header {
     font-size: 15px;
     white-space: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .logout-button {
@@ -99,6 +116,7 @@
     padding-left: 36px;
     padding-right:36px;
     font-family: Arial, Helvetica, sans-serif;
+    margin-block-start: 0;
 }
 
 .end-of-link {

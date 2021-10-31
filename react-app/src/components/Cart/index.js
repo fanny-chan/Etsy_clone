@@ -2,16 +2,18 @@ import { useParams } from 'react-router';
 import { useDispatch,useSelector } from 'react-redux';
 import { React, useState, useEffect} from 'react';
 import { thunkDeleteProductFromCart , thunkEditQuantityInCart, thunkGetCarts } from '../../store/carts';
+import { NavLink } from 'react-router-dom';
+import './Cart.css'
 
 export default function Cart() {
     const sessionUser = useSelector((state) => state.session.user);
     const carts = useSelector(state => state.carts)
+    const products= useSelector(state => state.products)
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0)
     const [productId, setProductId] = useState(null)
     const [quantity, setQuantity] = useState({})
     
-    console.log('-----', quantity)
 
     useEffect(() => {
         dispatch(thunkGetCarts(sessionUser?.id))
@@ -19,14 +21,18 @@ export default function Cart() {
 
     useEffect(() => {
         console.log('-CARTS---', carts)
+        const q = carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
+        console.log('-----Q----', q)
         if (carts.length) {
             setQuantity(
                 carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
-            )
+                )
         } else {
             setQuantity([]);
         }
     },[carts])
+
+
 
     
     // DELETE ITEMS FROM CART
@@ -35,46 +41,63 @@ export default function Cart() {
         e.preventDefault();
         dispatch(thunkDeleteProductFromCart(e.target.value));
     }
-
-    const onChangeQuantity = (evt, id) => {
-        dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser.id}))
+    const user = sessionUser?.id
+    const onChangeQuantity = async (evt, id) => {
+        await dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser.id}))
         setQuantity(s => ({...s, [id]: evt}))
+        // await dispatch(thunkGetCarts(user))
     }
-    const productsSection = Object.values(carts)
+    
+    const productsSection = Object.values(products)
     
     let totalPrice = 0;
     const items = carts.map((cartItem) => {
         const itemPrice = cartItem.productDetails.price * quantity[cartItem.productId]
         totalPrice = itemPrice + totalPrice
         return(
-       <>
-           <div>
-               <h2>{cartItem.productDetails.title}</h2>
-           </div>
-           <div>
-               <h2>{itemPrice}</h2>
-           </div>
-           <input
-           type="number"
-           value={quantity[cartItem.productId]}
-           onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
-           />
-           <button
-               className= "add-to-cart-button"
-               value={cartItem.productId}
-               onClick={handleDeleteProduct}
-               >Delete
-           </button>
-       </>
-       )});
+        <>  
+            {/* <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
+                <div id="cart-header">{carts.length} Items in your cart</div>
+            </div> */}
+            <div className="cart-page-container">  
+                <div className="product-image">
+                </div>   
+                <div className="title">
+                    {/* <NavLink className="product-title" to={`/products/${carts.productId}`}>{cartItem.productDetails.title}</NavLink> */}
+                    <div className="inner-title">
+                        <h2>{cartItem.productDetails.title}</h2>
+                        <input
+                        className="qty-cart-page"
+                        type="number"
+                        value={quantity[cartItem.productId]}
+                        onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
+                        />
+                        <button
+                            className= "remove-button"
+                            value={cartItem.productId}
+                            onClick={handleDeleteProduct}
+                            >Remove
+                        </button>
+                    </div>
+                    <div className="price-cart-page">
+                    <h2>{itemPrice}</h2>
+                    </div>
+                </div>
+            </div>
+        </>
+        )});
 
-    return (
-        <>
-        <div className="all-products"> HI
-        {items}
-        </div>
-        <div>
-            Total:{totalPrice}
+        return (
+            <>
+            <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
+                <div id="cart-header">{carts.length} Items in your cart</div>
+            </div>
+            <div className="all-products"> 
+            {items}
+            </div>
+            <div className="cart-div-seperator"></div>
+            <div className="total-price-cart">
+                Total: ${totalPrice}
         </div>
         </>
     )
