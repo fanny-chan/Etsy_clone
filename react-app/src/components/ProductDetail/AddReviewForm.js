@@ -10,12 +10,32 @@ export default function AddReviewForm({...props}) {
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState(1);
     const product = useSelector(state => state?.products)
+    const sessionUser = useSelector((state) => state.session.user);
     const user_id = useSelector((state) => {
         return state.session.user?.id
     })
+    const [reviewError, setReviewError] = useState({})
+
+    const validateReview = () => {
+        const reviewError = {};
+        
+        if(reviewContent.length > 500) {
+            reviewError["reviewContent"] = "Your review has exceeded 500 characters"
+        }
+        if(!reviewContent) {
+            reviewError["reviewContent"] = "Content cannot be empty"
+        }
+
+        return reviewError
+    }
+
 
     const postReview = async (e) => {
         e.preventDefault();
+
+        const reviewErrors = validateReview();
+        if(Object.keys(reviewErrors).length > 0) return setReviewError(reviewErrors)
+
         let newReview = {
             user_id: user_id,
             product_id:product.id,
@@ -65,15 +85,20 @@ export default function AddReviewForm({...props}) {
                         onChange={(e) => setReviewContent(e.target.value)}
                         required
                         />
-                        <button
+                        {reviewError.reviewContent &&(
+                            <div className="review-error-handling">
+                            {reviewError.reviewContent}
+                            </div>
+                        )}
+                            <button
                             onClick={postReview}
                             className="add-a-review-button"
                             type="submit"
                             style={{height:"30px"}}
-                           
-                        >
+                            >
                             Add review
-                        </button>
+                            </button>
+                        
                     </div>
         </div>
     )

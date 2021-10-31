@@ -15,7 +15,6 @@ import { thunkGetAllReviews } from '../../store/reviews';
     return (
         <>
         <div>
-        <h2 className="review-title">WE'RE HERE</h2>
         </div>
         </>
     )
