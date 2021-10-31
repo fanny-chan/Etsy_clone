@@ -21,4 +21,114 @@
     box-sizing: border-box;
     color: #f2f1f1;
     background: #222323;
+<<<<<<< Updated upstream
+=======
+}
+.review-btns {
+    display: flex;
+}
+button {
+    border-radius: 200px;
+    border: 0;
+    background-color: transparent;
+    width: 73%;
+}
+
+.delete-review-btn:hover {
+    background: rgb(226, 225, 225);
+}
+
+.edit-review-btn:hover{
+    background: rgb(226, 225, 225);
+}
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 500px;
+    padding-right: 15px;
+    width: 800px;
+}
+.main-image {
+    margin-top: 20%;
+}
+.image {
+    width: 80%;
+    height: 80%;
+    box-sizing: border-box; 
+}
+.product-container-right {
+    width: 35%;
+}
+.product-container-left {
+    width: 57%;
+    margin-left: 50px;
+}
+.username {
+    font-style: normal;
+}
+.product-title-details {
+    line-height: 24px;
+    font-weight: 300;
+    letter-spacing: 0.35px;
+    font-size: 25px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    display: block;
+    box-sizing: border-box;
+    color: #222323;
+}
+.quantity-input {
+    width: 90%;
+    height: 45px;
+    box-shadow: 0px 0px 10px 0px rgb(128 127 127 / 10%);
+    border-radius: 6px;
+    border: 1px solid #DEDEDE;
+    padding-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-to-cart-button{
+    background: #222323;
+    color: white;
+    text-align: center;
+    border-radius: 300px;
+    width: 93%;
+    height: 50px;
+    margin-top: 55px;
+    font-size: 14px;
+}
+.price {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.quantity {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+.description-tag {
+    padding-top:50px;
+    font-weight: bold;
+}
+
+.product-description-right {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    word-wrap: break-word;
+    color: #252526;
+    margin-top: 15px;
+}
+
+.image-div{
+    width: 650px;
+    height: 600px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+>>>>>>> Stashed changes
 }

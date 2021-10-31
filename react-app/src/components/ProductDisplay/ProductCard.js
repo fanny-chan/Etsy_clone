@@ -17,6 +17,7 @@ export default function ProductCard() {
         <>
         <div className="product-card-container">      
             {productsSection.map((product) => (
+            <NavLink className="product-title" to={`/products/${product.id}`}>
                 <div className="product-card"> 
                     <div className="product-pic"style={{backgroundImage:`url(${product.media_url})`}}>
                     <p className="product-price">{'$'+ product?.price}</p>
@@ -25,6 +26,7 @@ export default function ProductCard() {
                         <NavLink className="product-title" to={`/products/${product.id}`}>{product?.title}</NavLink>
                     </div>
                 </div>
+                </NavLink>
                 )
             )}
         

@@ -88,6 +88,7 @@ export const ProductDisplay = () => {
     };
     return (
     <>
+<<<<<<< Updated upstream
         <div className="product-page-wrapper">
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
@@ -124,6 +125,49 @@ export const ProductDisplay = () => {
                             />
                         <input
                             type="hidden"
+=======
+        {/* {productsSection.map((product) => ( */}
+            <div className="product-page-wrapper">
+                <div className="product-container-left">
+                    <div className="image-container">
+                        {/* <div className="vertical-images"></div> */}
+                        <div className="main-image">
+                            {/* {product.media_url} */}
+                            {/* <img className="image"src={product?.media_url} alt=""/> */}
+                            <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
+                            </div>
+
+                        </div>
+                    </div>
+                    {/* ) */}
+                    <div className="reviews-container">
+                        <h2 className="review-title">Reviews</h2>
+                        <div className="comments">
+                        {specificReview.map((review) => {
+                            return (
+                                <Review 
+                                key={review.id}
+                                review={review}
+                                />
+                            )
+                        })}
+                            <div>
+                                <AddReviewModal />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="product-container-right">
+                    <p className="username">Seller: {product?.user?.username}</p>
+                    <h1 className="product-title-details">{product?.title}</h1>
+                        <p className="price">${product?.price}</p>
+                    <div className="quantity">
+                        <span className="qty-tag">Quantity:</span>
+                        <input  
+                            className="quantity-input"
+                            type="number"
+>>>>>>> Stashed changes
                             min="1"
                             required
                             value={productId}
