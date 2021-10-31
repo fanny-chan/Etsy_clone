@@ -96,7 +96,7 @@ export const ProductDisplay = () => {
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
                             {/* {product.media_url} */}
-                            <img className="image"src="https://i.etsystatic.com/10204022/r/il/18e97e/2550873428/il_794xN.2550873428_rvbc.jpg" alt=""/>
+                            <img className="image"src={product?.media_url} alt=""/>
                         </div>
                     </div>
                     {/* ) */}
