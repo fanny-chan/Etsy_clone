@@ -9,8 +9,20 @@ export default function Review({review}) {
     const [reviewContent, setReviewContent] = useState(review.content);
     const [reviewId, setReviewId] = useState(0);
     const user = useSelector((state) => state.session.user);
-    console.log('---USER---', user)
-    console.log('----review---', review)
+    const [reviewError, setReviewError] = useState({})
+
+    const validateReview = () => {
+        const reviewError = {};
+        
+        if(reviewContent.length > 500) {
+            reviewError["reviewContent"] = "Your review has exceeded 500 characters"
+        }
+        if(!reviewContent) {
+            reviewError["reviewContent"] = "Content cannot be empty"
+        }
+
+        return reviewError
+    }
 
 
     const updateContent = (e) => {
@@ -22,7 +34,11 @@ export default function Review({review}) {
         dispatch(thunkDeleteReview(e.target.value));
     }
     const updateReview = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+
+        const reviewErrors = validateReview();
+        if(Object.keys(reviewErrors).length > 0) return setReviewError(reviewErrors)
+
         let updatedContent = {
             id: reviewId,
             content:reviewContent
@@ -50,6 +66,11 @@ export default function Review({review}) {
                         value={reviewContent}
                         onChange={updateContent}
                         />
+                        {reviewError.reviewContent &&(
+                            <div className="review-error-handling">
+                            {reviewError.reviewContent}
+                            </div>
+                        )}
                         <div className="review-btns">
                         <div className='delete-review'>
                         <button 

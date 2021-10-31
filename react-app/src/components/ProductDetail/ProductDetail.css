@@ -149,3 +149,7 @@ button {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.review-error-handling {
+    color: red;
+}

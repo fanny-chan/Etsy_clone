@@ -62,6 +62,7 @@ const SignUpForm = () => {
     const errors = validateSignup();
 
     if(Object.keys(errors).length > 0 )return setValidationErrors(errors)
+    
     if (password === repeatPassword) {
       const data = await dispatch(signUp( firstname, lastname, username, email, password));
       if (data) {
