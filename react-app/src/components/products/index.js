@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {thunkGetAllProducts, thunkGetProductDetails } from '../../store/products';
+import { thunkGetProductDetails } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 
 
@@ -10,8 +10,6 @@ export const ProductDisplay = () => {
     const {productId} = useParams()
     const product = useSelector(state => state?.products)
     const reviews = useSelector(state => state?.reviews)
-    console.log(reviews)
-    console.log('-------%%%%_1------',product)
     const sessionUser = useSelector((state) => state.session.user);
     const user_id = useSelector((state) => {
         return state.session.user?.id
@@ -36,10 +34,8 @@ export const ProductDisplay = () => {
 
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
-    console.log('----frontend---', reviewsSection)
     const specificReview = reviewsSection.filter((review) => review.product_id === product.id )
-    console.log('----specific----', specificReview)
-    // const productReviews = reviewsSection.map()
+
 
     const handleDeleteReview = (e) => {
         e.preventDefault();

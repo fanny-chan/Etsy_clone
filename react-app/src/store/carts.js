@@ -81,7 +81,6 @@ export const thunkEditQuantityInCart = cartDetails => async (dispatch) => {
 }
 
 export const thunkDeleteProductFromCart = (id) => async (dispatch) => {
-    console.log('----ID---', id)
     const response = await fetch(`/api/carts/delete/product/${id}`,{
         method:'DELETE',
         headers: {

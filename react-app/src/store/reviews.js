@@ -61,7 +61,6 @@ export const thunkCreateReview = reviewDetails => async (dispatch) => {
 
 // edit all reviews thunk
 export const thunkEditReviewDetails = reviewDetails => async(dispatch) => {
-    console.log('this is thunk ======>', reviewDetails)
     const response = await fetch (`/api/reviews/edit/${reviewDetails.id}`, {
         method: 'PATCH',
         headers:{'content-type':'application/json'},
@@ -69,12 +68,10 @@ export const thunkEditReviewDetails = reviewDetails => async(dispatch) => {
     })
     if (response.ok) {
         const editedReviewObj = await response.json()
-        console.log('this is response object', editedReviewObj)
+
         dispatch(editReview(editedReviewObj))
         return editedReviewObj
-    } else {
-        console.log('issue on backend')
-    }
+    } 
 }
 // delete a reviews thunk
 export const thunkDeleteReview = id => async (dispatch) => {

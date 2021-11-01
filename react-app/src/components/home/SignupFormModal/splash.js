@@ -1,9 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import '../splash.css'
 
 export default function Splash() {
-    const products =useSelector(store => store.products)
 
     // const allProducts = Object.values(products)?.map(product => (
 

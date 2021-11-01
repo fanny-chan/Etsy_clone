@@ -20,7 +20,6 @@ def get_products():
 @product_routes.route('/<int:id>')
 def get_a_product(id):
     product = Product.query.get(id)
-    print('------ONE-----', type(product))
     return product.to_dict()
 
 

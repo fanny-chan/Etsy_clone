@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './Header.css'
 import LoginFormModal from './LoginFormModal';
-import SignUpFormModal from './SignupFormModal';
 import LoggedInNav from '../LoggedInNav';
 
 

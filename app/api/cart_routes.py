@@ -19,10 +19,8 @@ def get_cart_items():
 def add_cart_item():
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-    print("\n\n", "FORM VALIDATED:" ,form.validate_on_submit(), "\n\n")
     if form.validate_on_submit():
         query = Cart.query.filter_by(user_id = current_user.id , product_id = form.data['product_id'] ).first()
-        print('-----QUERY---', query)
         if not query:
             new_cart_item = Cart(
                 user_id = current_user.id,
@@ -42,12 +40,9 @@ def add_cart_item():
 def edit_cart_item(id):
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-    print("\n\n", "FORM VALIDATED:" ,form.validate_on_submit(), "\n\n")
     if form.validate_on_submit():
         cart = Cart.query.filter(Cart.product_id == id , Cart.user_id == current_user.id).first()
-        print("\n\n", "CART:" ,cart, "\n\n")
         cart.quantity = form.data['quantity']
-        print("\n\n", "Quantity:" ,cart.to_dict(), "\n\n")
         db.session.commit()
         return cart.to_dict()
 
