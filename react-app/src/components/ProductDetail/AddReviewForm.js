@@ -1,4 +1,4 @@
-import { useEffect, useState, React } from 'react';
+import { useState, React } from 'react';
 import { thunkCreateReview } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ export default function AddReviewForm({...props}) {
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState(1);
     const product = useSelector(state => state?.products)
-    const sessionUser = useSelector((state) => state.session.user);
     const user_id = useSelector((state) => {
         return state.session.user?.id
     })
