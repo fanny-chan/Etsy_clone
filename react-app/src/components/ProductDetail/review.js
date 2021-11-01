@@ -8,7 +8,7 @@ import EditReviewModal from './EditReviewModal';
 export default function Review({review}) {
     const dispatch = useDispatch();
     const [reviewContent, setReviewContent] = useState(review.content);
-    const [reviewId, setReviewId] = useState(0);
+    // const [reviewId, setReviewId] = useState(0);
     const user = useSelector((state) => state.session.user);
     const [reviewError, setReviewError] = useState({})
 
@@ -41,7 +41,7 @@ export default function Review({review}) {
         if(Object.keys(reviewErrors).length > 0) return setReviewError(reviewErrors)
 
         let updatedContent = {
-            id: reviewId,
+            id: review.id,
             content:reviewContent
         };
         dispatch(thunkEditReviewDetails(updatedContent))
@@ -85,7 +85,6 @@ export default function Review({review}) {
                         className="edit-review-btn"
                         value={review.id}
                         onClick={() => {
-                            setReviewId(review.id)
                             updateReview()
                         }}
                         >Edit Review
