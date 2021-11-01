@@ -5,18 +5,21 @@ import { thunkGetAllProducts } from '../../store/products';
 import './ProductDisplay.css'
 
 export default function ProductCard() {
+  
     const dispatch = useDispatch();
     const products = useSelector(state => state?.products)
+    console.log('---',products)
     const productsSection = Object.values(products);
     
     useEffect(() => {
         dispatch(thunkGetAllProducts())
     }, [dispatch])
 
+
     return (
         <>
         <div className="product-card-container">      
-            {productsSection.map((product) => (
+            {productsSection?.map((product) => (
             <NavLink key={`product-${product.id}`} className="product-title" to={`/products/${product.id}`}>
                 <div  className="product-card"> 
                     <div className="product-pic"style={{backgroundImage:`url(${product.media_url})`}}>
