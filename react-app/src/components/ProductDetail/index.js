@@ -54,7 +54,7 @@ export const ProductDisplay = () => {
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
     // console.log('--REVIEW-', reviewsSection)
-    const specificReview = reviewsSection.filter((review) => review.product_id === oneProduct.id )
+    const specificReview = reviewsSection.filter((review) => review?.product_id === oneProduct?.id )
     // const productReviews = reviewsSection.map()
 
     const handleDeleteReview = (e) => {
