@@ -1,27 +1,33 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './Header.css'
 import LoginFormModal from './LoginFormModal';
 import LoggedInNav from '../LoggedInNav';
+import { useHistory } from 'react-router';
 
 
 export default function Header() {
-
+    const history =useHistory();
     const user = useSelector((state) => state.session.user);
     const carts = useSelector((state) => state.carts)
+
+    const handleHome = () => {
+        history.push('/')
+    }
 
     if(user) {
         <LoggedInNav />
     } else {
+
         
     }
     return (
         <>
             <div className="main-nav-wrap">
                 <div className="main-nav">
-                    <Link to='/' className="logo">Craftsi</Link>
+                    <NavLink to='/' className="logo">Craftsi</NavLink>
                     {/* <div className="search-bar">
                         <input className="search-input" placeholder="Search for anything" type="text"/>
                         <div className="search Icon"></div>

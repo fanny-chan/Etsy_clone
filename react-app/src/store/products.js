@@ -43,8 +43,8 @@ export const thunkGetAllProducts = () => async (dispatch) => {
     const response = await fetch ('/api/products/')
     if (response.ok) {
         const productObj = await response.json();
-        dispatch(getProducts(productObj))
-        return productObj
+        return dispatch(getProducts(productObj))
+        
     }
 }
 

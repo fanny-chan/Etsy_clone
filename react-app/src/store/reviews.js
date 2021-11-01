@@ -73,7 +73,7 @@ async(dispatch) => {
     if (response.ok) {
         const editedReviewObj = await response.json()
 
-        await dispatch(editReview(editedReviewObj))
+        dispatch(editReview(editedReviewObj))
         return editedReviewObj
     } 
 }
