@@ -62,14 +62,11 @@ export const thunkCreateReview = reviewDetails => async (dispatch) => {
 // edit all reviews thunk
 export const thunkEditReviewDetails = reviewDetails =>
 async(dispatch) => {
-    console.log('-----',reviewDetails)
     const response = await fetch (`/api/reviews/edit/${reviewDetails.id}`, {
         method: 'PATCH',
         headers:{'content-type':'application/json'},
         body: JSON.stringify(reviewDetails)
     })
-    console.log('--RES---',response)
-    console.log('-----',reviewDetails)
     if (response.ok) {
         const editedReviewObj = await response.json()
 

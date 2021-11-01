@@ -31,11 +31,13 @@
     width: 20%;
 }
 .title {
-    width: 60%;
+    width: 70%;
     line-height: 32px;
     font-size: 16px;
     font-weight: 300;
     color: #2a2b2b;
+    display: flex;
+    justify-content: space-between;
 }
 
 .inner-title {

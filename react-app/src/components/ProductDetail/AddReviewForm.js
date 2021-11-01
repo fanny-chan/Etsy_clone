@@ -37,10 +37,11 @@ export default function AddReviewForm({...props}) {
 
         let newReview = {
             user_id: user_id,
-            product_id:product.id,
+            product_id:productId,
             content:reviewContent,
             rating:reviewRating
         }; 
+
         let createdReview = await dispatch
         (thunkCreateReview(newReview))
         props.onClose()

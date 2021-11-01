@@ -12,7 +12,8 @@ export default function Cart() {
     
 
     useEffect(() => {
-        dispatch(thunkGetCarts(sessionUser?.id))
+        if(sessionUser) 
+        {dispatch(thunkGetCarts(sessionUser?.id))}
     },[])
 
     useEffect(() => {
@@ -25,8 +26,6 @@ export default function Cart() {
             setQuantity([]);
         }
     },[carts])
-
-
 
     
     // DELETE ITEMS FROM CART
@@ -54,8 +53,8 @@ export default function Cart() {
                 </div>   
                 <div className="title">
                     <NavLink className="product-title" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
-                    <div className="inner-title">
-                        <h2>{cartItem?.productDetails?.title}</h2>
+                    {/* <div className="inner-title">
+                        <h2>{cartItem?.productDetails?.title}</h2> */}
                         <input
                         className="qty-cart-page"
                         type="number"
@@ -75,7 +74,7 @@ export default function Cart() {
                     </div>
                     <div className="price-cart-page">
                     <h2>${itemPrice}</h2>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         </div>

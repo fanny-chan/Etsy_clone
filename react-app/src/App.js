@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(thunkGetCarts());
+      // await dispatch(thunkGetCarts());
       setLoaded(true);
     })();
   }, [dispatch]);

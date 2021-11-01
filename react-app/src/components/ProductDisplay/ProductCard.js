@@ -8,7 +8,6 @@ export default function ProductCard() {
   
     const dispatch = useDispatch();
     const products = useSelector(state => state?.products)
-    console.log('---',products)
     const productsSection = Object.values(products);
     
     useEffect(() => {
