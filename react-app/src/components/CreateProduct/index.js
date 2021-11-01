@@ -23,10 +23,13 @@ export default function CreateProduct() {
             quantiy
         };
 
-        let createdProduct = await dispatch(thunkCreateProduct(newProduct))
-        if(createdProduct) {
-            history.push(`/products/${createdProduct?.id}`);
-        }
+        // let createdProduct = await dispatch(thunkCreateProduct(newProduct))
+        // if(!createdProduct.id) {
+        //     return
+        // }
+        // if(createdProduct) {
+        //     history.push(`/products/${createdProduct?.id}`);
+        // }
     };
     return (
         <>

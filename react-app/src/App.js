@@ -7,7 +7,6 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Header from './components/home/Header';
 import ProductDisplay from './components/ProductDetail';
-import Reviews from './components/reviews';
 import AllProductDisplay from './components/ProductDisplay';
 import Cart from './components/Cart/index';
 import { thunkGetCarts } from './store/carts';

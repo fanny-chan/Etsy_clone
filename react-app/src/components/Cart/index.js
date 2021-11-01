@@ -1,4 +1,3 @@
-import { useParams } from 'react-router';
 import { useDispatch,useSelector } from 'react-redux';
 import { React, useState, useEffect} from 'react';
 import { thunkDeleteProductFromCart , thunkEditQuantityInCart, thunkGetCarts } from '../../store/carts';
@@ -6,12 +5,9 @@ import { NavLink } from 'react-router-dom';
 import './Cart.css'
 
 export default function Cart() {
-    const sessionUser = useSelector((state) => state.session.user);
-    const carts = useSelector(state => state.carts)
-    const products= useSelector(state => state.products)
+    const sessionUser = useSelector((state) => state?.session?.user);
+    const carts = useSelector(state => state?.carts)
     const dispatch = useDispatch();
-    const [total, setTotal] = useState(0)
-    const [productId, setProductId] = useState(null)
     const [quantity, setQuantity] = useState({})
     
 
@@ -20,7 +16,6 @@ export default function Cart() {
     },[])
 
     useEffect(() => {
-        const q = carts.reduce((acc, product) => ({...acc, [product.productId]: product.quantity}), {})
 
         if (carts.length) {
             setQuantity(
@@ -42,38 +37,38 @@ export default function Cart() {
     }
     const user = sessionUser?.id
     const onChangeQuantity = async (evt, id) => {
-        await dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser.id}))
+        await dispatch(thunkEditQuantityInCart({quantity: evt, product_id:id, user_id : sessionUser?.id}))
         setQuantity(s => ({...s, [id]: evt}))
         // await dispatch(thunkGetCarts(user))
     }
     
-    const productsSection = Object.values(products)
     
     let totalPrice = 0;
     const items = carts.map((cartItem) => {
-        const itemPrice = cartItem.productDetails.price * quantity[cartItem.productId]
+        const itemPrice = cartItem?.productDetails?.price * quantity[cartItem?.productId]
         totalPrice = itemPrice + totalPrice
         return(
-        <>  
-            {/* <div className="cart-username-greeting">{sessionUser.first_name}'s Cart
-                <div id="cart-header">{carts.length} Items in your cart</div>
-            </div> */}
+        <div key={`cartItem-${cartItem?.productId}`}>   
             <div className="cart-page-container">  
                 <div className="product-image">
                 </div>   
                 <div className="title">
-                    {/* <NavLink className="product-title" to={`/products/${carts.productId}`}>{cartItem.productDetails.title}</NavLink> */}
+                    <NavLink className="product-title" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
                     <div className="inner-title">
-                        <h2>{cartItem.productDetails.title}</h2>
+                        <h2>{cartItem?.productDetails?.title}</h2>
                         <input
                         className="qty-cart-page"
                         type="number"
-                        value={quantity[cartItem.productId]}
-                        onChange={evt => onChangeQuantity(evt.target.value, cartItem.productId)}
+                        value={
+                            quantity[cartItem?.productId] ?
+                            quantity[cartItem?.productId]
+                            : ""
+                        }
+                        onChange={evt => onChangeQuantity(evt?.target?.value, cartItem?.productId)}
                         />
                         <button
                             className= "remove-button"
-                            value={cartItem.productId}
+                            value={cartItem?.productId}
                             onClick={handleDeleteProduct}
                             >Remove
                         </button>
@@ -83,7 +78,7 @@ export default function Cart() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
         )});
 
         return (

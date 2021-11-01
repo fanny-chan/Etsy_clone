@@ -13,11 +13,9 @@ import LoginFormModalAddToCart from '../home/LoginFormModal/AddToCartLoginModal'
 
 export const ProductDisplay = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const {productId} = useParams()
     const product = useSelector(state => state?.products)
     const reviews = useSelector(state => state?.reviews)
-    const sessionUser = useSelector(state => state.session.user);
     const user_id = useSelector(state => state.session.user?.id);
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
@@ -94,7 +92,12 @@ export const ProductDisplay = () => {
                     <div className="image-container">
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
-                            <div className="image-div"style={{backgroundImage:`url(${product?.media_url})`}} alt="">
+                            <div className="image-div"style={
+                                product?.media_url
+                                ?
+                                {backgroundImage:`url(${product?.media_url})`}
+                                : {display:"none"}
+                        } alt="">
                             </div>
                         </div>
                     </div>                   

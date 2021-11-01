@@ -64,7 +64,7 @@ export default function AllProductDisplay() {
                 <div>
                     
                     <div>
-                    <NavLink className="product-title" to={`/products/${product.id}`}>{product?.title}</NavLink>
+                    <NavLink className="product-title" to={`/products/${product?.id}`}>{product?.title}</NavLink>
                     {/* <h1 className="product-title">{product?.title}</h1> */}
                     </div>
                     <div></div>
@@ -78,6 +78,7 @@ export default function AllProductDisplay() {
                 </div>
                 )
             })}
+            
             
             <div>
                 {/* {products?.seller_id === sessionUser?.id && ( */}
