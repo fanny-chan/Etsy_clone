@@ -73,7 +73,6 @@ export const ProductDisplay = () => {
         <div className="product-page-wrapper">
             <div className="product-container">
                 <h2 className="product-title">{product?.title}</h2>
-                <h2 className="review-title">WE'RE HERE</h2>
             </div>
             <div className="comments">
             {specificReview.map((review) => {
