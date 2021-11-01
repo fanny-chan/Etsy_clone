@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory} from 'react-router-dom';
 import { thunkAddToCart } from '../../store/carts';
 import { thunkGetProductDetails } from '../../store/products';
+import { thunkGetAllProducts } from '../../store/products';
 import { thunkGetAllReviews,thunkDeleteReview, thunkEditReviewDetails, thunkCreateReview} from '../../store/reviews';
 import Review from './review';
 import './ProductDetail.css'
@@ -14,7 +15,7 @@ import LoginFormModalAddToCart from '../home/LoginFormModal/AddToCartLoginModal'
 export const ProductDisplay = () => {
     const dispatch = useDispatch();
     const {productId} = useParams()
-    const product = useSelector(state => state?.products)
+    const products = useSelector(state => Object.values(state?.products))
     const reviews = useSelector(state => state?.reviews)
     const user_id = useSelector(state => state.session.user?.id);
     const [reviewContent, setReviewContent] = useState("");
@@ -36,21 +37,22 @@ export const ProductDisplay = () => {
         }))
     }
     
+    const oneProduct = products?.filter(product => product.id === +productId)[0]
+
 
     useEffect(() => {
-        // dispatch(thunkGetAllProducts())
-        dispatch(thunkGetProductDetails(productId))
+        dispatch(thunkGetAllProducts())
+        // dispatch(thunkGetProductDetails(productId))
     }, [dispatch, productId])
 
 
     useEffect(() => {
-        // dispatch(thunkGetAllProducts())
         dispatch(thunkGetAllReviews())
     }, [dispatch])
 
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
-    const specificReview = reviewsSection.filter((review) => review.product_id === product.id )
+    const specificReview = reviewsSection.filter((review) => review.product_id === oneProduct.id )
     // const productReviews = reviewsSection.map()
 
     const handleDeleteReview = (e) => {
@@ -62,7 +64,7 @@ export const ProductDisplay = () => {
         e.preventDefault();
         let newReview = {
             user_id: user_id,
-            product_id:product.id,
+            product_id:products.id,
             content:reviewContent,
             rating:reviewRating
         }; 
@@ -93,9 +95,9 @@ export const ProductDisplay = () => {
                         {/* <div className="vertical-images"></div> */}
                         <div className="main-image">
                             <div className="image-div"style={
-                                product?.media_url
+                                oneProduct?.media_url
                                 ?
-                                {backgroundImage:`url(${product?.media_url})`}
+                                {backgroundImage:`url(${oneProduct?.media_url})`}
                                 : {display:"none"}
                         } alt="">
                             </div>
@@ -120,9 +122,9 @@ export const ProductDisplay = () => {
 
                 </div>
                 <div className="product-container-right">
-                    <p className="username">Seller: {product?.user?.username}</p>
-                    <h1 className="product-title-details">{product?.title}</h1>
-                        <p className="price">${product?.price}</p>
+                    <p className="username">Seller: {oneProduct?.user?.username}</p>
+                    <h1 className="product-title-details">{oneProduct?.title}</h1>
+                        <p className="price">${oneProduct?.price}</p>
                     <div className="quantity">
                         <span className="qty-tag">Quantity:</span>
                         <input  
@@ -144,7 +146,7 @@ export const ProductDisplay = () => {
                         }          
                     </div>
                     <div className="description-tag">Description</div>
-                    <div className="product-description-right">{product?.description}
+                    <div className="product-description-right">{oneProduct?.description}
                     </div>
                 </div>
             </div>

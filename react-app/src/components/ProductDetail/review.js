@@ -10,6 +10,7 @@ export default function Review({review}) {
     const [reviewContent, setReviewContent] = useState(review.content);
     // const [reviewId, setReviewId] = useState(0);
     const user = useSelector((state) => state.session.user);
+
     const [reviewError, setReviewError] = useState({})
 
     const validateReview = () => {
