@@ -35,18 +35,17 @@ const SignUpForm = () => {
     if(!username ) {
       validationErrors["username"] = "Please enter a username"
     }
-
     if(typeof username !== "undefined") {
-      const usernameRegex = /^[a-zA-Z0-9]+$/;
-      if(username.length > 5 || username.length < 15 || !usernameRegex.test(username)) {
-        validationErrors["username"] = "Please enter a valid username, username must only contain alphanumeric characters and must be between the length of 4 and 25 characters"
+      // const usernameRegex = /^[a-zA-Z0-9]+$/;
+      if(username.length < 5 || username.length > 15 ) {
+        validationErrors["username"] = "Please enter a valid username, username must only contain alphanumeric characters and must be between the length of 5 and 25 characters"
       }
     }
     if(!password ) {
       validationErrors["password"] = "Please enter a valid password"
     }
     
-    if(password.length > 8 || password.length < 20) {
+    if(password.length < 8 || password.length > 20) {
       validationErrors["password"] = "Password must be greater than 8 characters and less than 20 characters"
     }
 
