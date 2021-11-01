@@ -11,9 +11,11 @@ https://craftsi.herokuapp.com/
 
 ## Technologies used
 
-Database: PostgreSQL
-Backend: Fkask, SQLAlchemy, Python
-Frontend: React, Reduc, Javascript, CSS, HTML
+###Database: PostgreSQL
+
+###Backend: Fkask, SQLAlchemy, Python
+
+###Frontend: React, Reduc, Javascript, CSS, HTML
 
 ## Features
 1. User Authentication
