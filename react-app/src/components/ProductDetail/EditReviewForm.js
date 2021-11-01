@@ -1,11 +1,10 @@
-import React, { useEffect,useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkEditReviewDetails, thunkDeleteReview, thunkGetAllReviews} from '../../store/reviews';
+import { thunkEditReviewDetails, thunkDeleteReview} from '../../store/reviews';
 import './ProductDetail.css'
-import EditReviewModal from './EditReviewModal';
 
+export default function EditReviewForm({review, onClose}) {
 
-export default function Review({review}) {
     const dispatch = useDispatch();
     const [reviewContent, setReviewContent] = useState(review.content);
     const [reviewId, setReviewId] = useState(0);
@@ -44,19 +43,15 @@ export default function Review({review}) {
             id: reviewId,
             content:reviewContent
         };
-        dispatch(thunkEditReviewDetails(updatedContent))
+        dispatch(thunkEditReviewDetails(updatedContent)
+        )
+        onClose()
     };
     
     return (
         <div>
             <div key={review.id} className="review-whole">
                 <div className="review-block">
-                    <div className="review-header"> {review?.user?.username}
-                    <div className="review-date">{review?.created_at}</div>
-                    </div>
-                    <div className="review-rating-star">Rating: {review?.rating} star(s)</div>
-                    <div className="review-content"> {review?.content}
-                    </div>
                     {user?.id === review?.user_id &&(
                     <>
                         <textarea
@@ -90,9 +85,6 @@ export default function Review({review}) {
                         }}
                         >Edit Review
                         </button>
-                        {/* <div>
-                            <EditReviewModal review={review} />
-                        </div> */}
                         </div>
                     </>
                     )}

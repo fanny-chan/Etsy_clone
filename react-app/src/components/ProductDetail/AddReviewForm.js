@@ -53,7 +53,7 @@ export default function AddReviewForm({...props}) {
 
     return (
         <div>
-            <div className="edit-review-header">Add a review</div>
+            <div className="edit-review-header"></div>
             <div className="new-review-form">
                         <input
                             type="hidden"

@@ -89,7 +89,7 @@ export const ProductDisplay = () => {
                         <div>{review?.created_at}</div>
                         <div>{review?.rating}</div>
                         <div className="review-content"> {review?.content}
-                        <input
+                        <textarea
                         className="review-input"
                         name={review.id}
                         type="text"

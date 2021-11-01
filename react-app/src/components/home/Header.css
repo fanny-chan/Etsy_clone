@@ -23,7 +23,7 @@
     color: rgb(241, 101, 31);
     font-size: 35px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    width: 12%;
+    width: 100%;
     text-decoration: none;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .login_button {
-    border-radius: 200px;
+    border-radius: 200px !important;
     border: 0;
     background-color: transparent;
     width: 70px;

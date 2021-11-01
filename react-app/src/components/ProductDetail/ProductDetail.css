@@ -7,16 +7,19 @@
 }
 .review-block {
     color: #595959;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 300;
     line-height: 18px;
     padding: 5px;
+}
+.review-rating-star {
+    padding-bottom: 10px
 }
 
 .review-header {
     margin-right: 10px;
     color: #595959;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 300;
     display: flex;
 }
@@ -31,6 +34,16 @@
     font-size: 15px;
     padding-left: 48px;
     width: 60%;
+}
+.review-input {
+    border: 1px solid #DEDEDE;
+    border-radius: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 80%;
+    height: 60px;
+    padding-left: 8px;
+    padding-top: 5px;
 }
 
 .add-review-form {
@@ -116,6 +129,9 @@ button {
     height: 50px;
     margin-top: 55px;
     font-size: 14px;
+}
+.add-to-cart-button:hover {
+    cursor: pointer;
 }
 .price {
     font-weight: bold;

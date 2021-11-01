@@ -23,10 +23,10 @@ export default function Header() {
             <div className="main-nav-wrap">
                 <div className="main-nav">
                     <Link to='/' className="logo">Craftsi</Link>
-                    <div className="search-bar">
+                    {/* <div className="search-bar">
                         <input className="search-input" placeholder="Search for anything" type="text"/>
                         <div className="search Icon"></div>
-                    </div>
+                    </div> */}
                     <div className="button-wrapper">
                     {!user ?
                         <>
