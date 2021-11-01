@@ -39,6 +39,7 @@ export const ProductDisplay = () => {
     
     const oneProduct = products?.filter(product => product.id === +productId)[0]
 
+    // console.log('----ONEPRODUCT---',oneProduct)
 
     useEffect(() => {
         dispatch(thunkGetAllProducts())
@@ -52,6 +53,7 @@ export const ProductDisplay = () => {
 
     // grabs the values of the object into an array
     const reviewsSection = Object.values(reviews);
+    // console.log('--REVIEW-', reviewsSection)
     const specificReview = reviewsSection.filter((review) => review.product_id === oneProduct.id )
     // const productReviews = reviewsSection.map()
 
