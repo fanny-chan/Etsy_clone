@@ -43,9 +43,12 @@ export default function Cart() {
     
     
     let totalPrice = 0;
+    let totalCartItem = 0;
     const items = carts.map((cartItem) => {
+        const itemInCart = cartItem?.quantity
         const itemPrice = cartItem?.productDetails?.price * quantity[cartItem?.productId]
         totalPrice = itemPrice + totalPrice
+        totalCartItem += itemInCart
         return(
         <div key={`cartItem-${cartItem?.productId}`}>   
             <div className="cart-page-container">  
@@ -81,7 +84,7 @@ export default function Cart() {
 
         return (
             <>
-            <div id="cart-header">{carts.length} items in your cart</div>
+            <div id="cart-header">{totalCartItem} items in your cart</div>
            
             <div className="all-products"> 
             {items}

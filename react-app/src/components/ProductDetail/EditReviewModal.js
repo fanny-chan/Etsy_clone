@@ -19,7 +19,7 @@ export default function EditReviewModal({review}) {
             className='edit-review-form'
             onClick={() => setShowModal(true)}
             >
-                Edit review!!
+                Edit review
             </button>
             )}
         </div>
