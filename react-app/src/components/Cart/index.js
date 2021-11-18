@@ -52,7 +52,7 @@ export default function Cart() {
                 <div className="product-image">
                 </div>   
                 <div className="title">
-                    <NavLink className="product-title" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
+                    <NavLink className="product-title-cart" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
                     {/* <div className="inner-title">
                         <h2>{cartItem?.productDetails?.title}</h2> */}
                         <input
