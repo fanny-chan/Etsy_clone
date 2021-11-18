@@ -50,7 +50,7 @@ const SignUpForm = () => {
     }
 
     if(!repeatPassword || repeatPassword !== password) {
-      validationErrors[repeatPassword] = "Your passwords do not match"
+      validationErrors["repeatPassword"] = "Your passwords do not match"
     }
     return validationErrors
 
