@@ -83,3 +83,11 @@
 .cart-div-seperator {
     border: 1px solid #dedede;
 }
+.product-title-cart {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: arial;
+    margin-top: 8px;
+    width: 60%;
+}

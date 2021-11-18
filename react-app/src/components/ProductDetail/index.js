@@ -9,6 +9,7 @@ import Review from './review';
 import './ProductDetail.css'
 import AddReviewModal from './AddReviewModal';
 import LoginFormModalAddToCart from '../home/LoginFormModal/AddToCartLoginModal';
+import EditReviewModal from './EditReviewModal';
 
 
 
@@ -16,7 +17,7 @@ export const ProductDisplay = () => {
     const dispatch = useDispatch();
     const {productId} = useParams()
     const products = useSelector(state => Object.values(state?.products))
-    const reviews = useSelector(state => state?.reviews)
+    const review = useSelector(state => state?.reviews)
     const user_id = useSelector(state => state.session.user?.id);
     const [reviewContent, setReviewContent] = useState("");
     const [reviewRating, setReviewRating] = useState("");
@@ -52,7 +53,7 @@ export const ProductDisplay = () => {
     }, [dispatch])
 
     // grabs the values of the object into an array
-    const reviewsSection = Object.values(reviews);
+    const reviewsSection = Object.values(review);
     // console.log('--REVIEW-', reviewsSection)
     const specificReview = reviewsSection.filter((review) => review?.product_id === oneProduct?.id )
     // const productReviews = reviewsSection.map()
@@ -111,6 +112,14 @@ export const ProductDisplay = () => {
                         {specificReview.map((review) => {
                             return (
                                 <Review 
+                                key={review.id}
+                                review={review}
+                                />
+                            )
+                        })}
+                        {specificReview.map((review) => {
+                            return (
+                                <EditReviewModal 
                                 key={review.id}
                                 review={review}
                                 />

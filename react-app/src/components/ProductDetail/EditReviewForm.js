@@ -6,7 +6,7 @@ import './ProductDetail.css'
 export default function EditReviewForm({review, onClose}) {
 
     const dispatch = useDispatch();
-    const [reviewContent, setReviewContent] = useState(review.content);
+    const [reviewContent, setReviewContent] = useState(review?.content);
     const [reviewId, setReviewId] = useState(0);
     const user = useSelector((state) => state.session.user);
     const [reviewError, setReviewError] = useState({})
@@ -47,10 +47,12 @@ export default function EditReviewForm({review, onClose}) {
         )
         onClose()
     };
-    
+    console.log("------", review)
+
     return (
-        <div>
-            <div key={review.id} className="review-whole">
+        <>
+        <div className="test">
+            <div key={review?.id} className="review-whole">
                 <div className="review-block">
                     {user?.id === review?.user_id &&(
                     <>
@@ -92,5 +94,7 @@ export default function EditReviewForm({review, onClose}) {
                     
             </div>
         </div>
+        </>
     )
 }
+
