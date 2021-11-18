@@ -43,16 +43,19 @@ export default function Cart() {
     
     
     let totalPrice = 0;
+    let totalCartItem = 0;
     const items = carts.map((cartItem) => {
+        const itemInCart = cartItem?.quantity
         const itemPrice = cartItem?.productDetails?.price * quantity[cartItem?.productId]
         totalPrice = itemPrice + totalPrice
+        totalCartItem += itemInCart
         return(
         <div key={`cartItem-${cartItem?.productId}`}>   
             <div className="cart-page-container">  
                 <div className="product-image">
                 </div>   
                 <div className="title">
-                    <NavLink className="product-title" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
+                    <NavLink className="product-title-cart" to={`/products/${cartItem?.productId}`}>{cartItem?.productDetails?.title}</NavLink>
                     {/* <div className="inner-title">
                         <h2>{cartItem?.productDetails?.title}</h2> */}
                         <input
@@ -81,7 +84,7 @@ export default function Cart() {
 
         return (
             <>
-            <div id="cart-header">{carts.length} items in your cart</div>
+            <div id="cart-header">{totalCartItem} items in your cart</div>
            
             <div className="all-products"> 
             {items}

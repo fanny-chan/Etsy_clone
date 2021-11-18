@@ -21,7 +21,7 @@
     text-overflow: ellipsis;
     font-family: arial;
     margin-top: 8px;
-    width: 60%;
+    /* width: 60%; */
 
 }
 .product-description {
