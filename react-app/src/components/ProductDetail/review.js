@@ -7,7 +7,7 @@ import EditReviewModal from './EditReviewModal';
 
 export default function Review({review}) {
     const dispatch = useDispatch();
-    const [reviewContent, setReviewContent] = useState(review.content);
+    const [reviewContent, setReviewContent] = useState(review?.content);
     // const [reviewId, setReviewId] = useState(0);
     const user = useSelector((state) => state.session.user);
 
@@ -47,10 +47,11 @@ export default function Review({review}) {
         };
         dispatch(thunkEditReviewDetails(updatedContent))
     };
+    console.log("-----review---", review.id)
     
     return (
         <div>
-            <div key={review.id} className="review-whole">
+            <div key={review?.id} className="review-whole">
                 <div className="review-block">
                     <div className="review-header"> {review?.user?.username}
                     <div className="review-date">{review?.created_at}</div>
@@ -60,14 +61,14 @@ export default function Review({review}) {
                     </div>
                     {user?.id === review?.user_id &&(
                     <>
-                        <textarea
+                        {/* <textarea
                         className="review-input"
                         name={review.id}
                         type="text"
                         placeholder="edit your review"
                         value={reviewContent}
                         onChange={updateContent}
-                        />
+                        /> */}
                         {reviewError.reviewContent &&(
                             <div className="review-error-handling">
                             {reviewError.reviewContent}
@@ -82,17 +83,15 @@ export default function Review({review}) {
                         >Delete
                         </button>
                         </div>
-                        <button 
+                        {/* <button 
                         className="edit-review-btn"
                         value={review.id}
                         onClick={() => {
                             updateReview()
                         }}
                         >Edit Review
-                        </button>
-                        {/* <div>
-                            <EditReviewModal review={review} />
-                        </div> */}
+                        </button> */}
+                        
                         </div>
                     </>
                     )}
