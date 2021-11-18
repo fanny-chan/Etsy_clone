@@ -65,24 +65,23 @@ export default function Cart() {
                         }
                         onChange={evt => onChangeQuantity(evt?.target?.value, cartItem?.productId)}
                         />
-                        <button
-                            className= "remove-button"
-                            value={cartItem?.productId}
-                            onClick={handleDeleteProduct}
-                            >Remove
-                        </button>
-                    </div>
-                    <div className="price-cart-page">
-                    <h2>${itemPrice}</h2>
-                    {/* </div> */}
+                <div className="price-cart-page">
+                <h2>${itemPrice}</h2>
                 </div>
+            </div>
+                    <button
+                        className= "remove-button"
+                        value={cartItem?.productId}
+                        onClick={handleDeleteProduct}
+                        >Remove
+                    </button>
             </div>
         </div>
         )});
 
         return (
             <>
-            <div id="cart-header">{carts.length} Items in your cart</div>
+            <div id="cart-header">{carts.length} items in your cart</div>
            
             <div className="all-products"> 
             {items}
