@@ -51,11 +51,14 @@ export const thunkCreateReview = reviewDetails => async (dispatch) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(reviewDetails)
-    })
+    }) 
+    console.log(response)
     if (response.ok) {
         const newReviewObj = await response.json();
         dispatch(addReview(newReviewObj));
         return newReviewObj
+    } else {
+        alert("unable to create review")
     }
 }
 

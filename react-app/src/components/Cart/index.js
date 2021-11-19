@@ -61,6 +61,7 @@ export default function Cart() {
                         <input
                         className="qty-cart-page"
                         type="number"
+                        min="0"
                         value={
                             quantity[cartItem?.productId] ?
                             quantity[cartItem?.productId]

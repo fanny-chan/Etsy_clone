@@ -62,7 +62,10 @@ export default function Header() {
                         </a>
                     </div>
                     <div className="shopping-cart-length">
-                        {carts.length}
+                        {carts.reduce((acc,item) => {
+                            return acc + item.quantity
+                        },0)}
+                        
                     </div>
                     
                 </div>
