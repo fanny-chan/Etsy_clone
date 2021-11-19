@@ -16,7 +16,7 @@ export default function EditReviewModal({review}) {
         <div>
           {sessionUser?.id === review?.user_id &&(
             <button
-            className='edit-review-form'
+            id='edit-review-form'
             onClick={() => setShowModal(true)}
             >
                 Edit review
