@@ -4,6 +4,7 @@ const GET_CART = 'cart/LOAD'
 const ADD_TO_CART = 'cart/ADD'
 const EDIT_QUANTITY_OF_PRODUCT = 'cart/EDIT'
 const DELETE_PRODUCT_FROM_CART = 'cart/DELETE'
+const EMPTY_CART = 'cart/EMPTY'
 
 const getCart = cartObj => {
     return {
@@ -30,6 +31,12 @@ const deleteProductFromCart = deletedFromCartObj => {
     return {
         type:DELETE_PRODUCT_FROM_CART,
         deletedFromCartObj
+    }
+}
+export const emptyCart = () => {
+    return {
+        type: EMPTY_CART
+
     }
 }
 
@@ -115,6 +122,8 @@ const cartReducer = (state = initialState, action) => {
                 }: product ],[])
         case DELETE_PRODUCT_FROM_CART:
            return [...state.filter(product => product.productId !== action.deletedFromCartObj.id)] 
+        case EMPTY_CART:
+            return [];
         default:
             return state
     }

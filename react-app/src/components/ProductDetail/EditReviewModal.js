@@ -11,10 +11,11 @@ export default function EditReviewModal({review}) {
     const [showModal, setShowModal] = useState(false);
     const onClose = () => setShowModal(false)
     const sessionUser = useSelector((state) => state.session.user);
+    console.log("----",review)
     return (
         <>
         <div>
-          {sessionUser &&(
+          {sessionUser?.id === review?.user_id &&(
             <button
             className='edit-review-form'
             onClick={() => setShowModal(true)}

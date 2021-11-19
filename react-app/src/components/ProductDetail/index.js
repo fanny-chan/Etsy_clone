@@ -107,20 +107,23 @@ export const ProductDisplay = () => {
                         <div className="comments">
                         {specificReview.map((review) => {
                             return (
+                                <>
                                 <Review 
                                 key={review.id}
                                 review={review}
                                 />
-                            )
-                        })}
-                        {specificReview.map((review) => {
-                            return (
                                 <EditReviewModal 
                                 key={review.id}
                                 review={review}
                                 />
+                                </>
                             )
                         })}
+                        {/* {specificReview.map((review) => {
+                            return (
+                                
+                            )
+                        })} */}
                             <div>
                                 <AddReviewModal />
                             </div>

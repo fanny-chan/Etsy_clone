@@ -3,6 +3,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { logout } from '../../store/session';
 import '../home/Header.css'
+import { emptyCart } from '../../store/carts';
 
 
 const LogoutButton = () => {
@@ -15,6 +16,7 @@ const LogoutButton = () => {
 
   const onLogout = async (e) => {
     await dispatch(logout());
+    await dispatch(emptyCart());
   };
 
 

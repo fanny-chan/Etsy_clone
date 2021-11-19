@@ -6,13 +6,14 @@ import './Header.css'
 import LoginFormModal from './LoginFormModal';
 import LoggedInNav from '../LoggedInNav';
 import { useHistory } from 'react-router';
+import User from '../User';
 
 
 export default function Header() {
     const history =useHistory();
     const user = useSelector((state) => state.session.user);
     const carts = useSelector((state) => state.carts)
-
+    console.log("USER:", user)
     const handleHome = () => {
         history.push('/')
     }
