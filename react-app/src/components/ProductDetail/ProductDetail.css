@@ -53,6 +53,9 @@
     color: #f2f1f1;
     background: #222323;
 }
+.add-review-form {
+    cursor: pointer;
+}
 
 .review-btns {
     display: flex;
