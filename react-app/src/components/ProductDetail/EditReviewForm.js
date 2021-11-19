@@ -47,7 +47,6 @@ export default function EditReviewForm({review, onClose}) {
         )
         onClose()
     };
-    console.log("------", review)
 
     return (
         <>
