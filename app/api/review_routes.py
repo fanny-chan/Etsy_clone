@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, Response, abort, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.models import db, Review
 from app.models.product import Product
 from app.forms import EditReviewForm
 from app.forms import NewReviewForm
+
 
 
 review_routes = Blueprint('reviews', __name__)
@@ -28,15 +29,18 @@ def create_a_review():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        review = Review(
-            user_id = current_user.id,
-            product_id = form.data['product_id'],
-            content  = form.data['content'],
-            rating = form.data['rating']
-        )
-        db.session.add(review)
-        db.session.commit()
-        return review.to_dict()
+        try:
+            review = Review(
+                user_id = current_user.id,
+                product_id = form.data['product_id'],
+                content  = form.data['content'],
+                rating = form.data['rating']
+            )
+            db.session.add(review)
+            db.session.commit()
+            return review.to_dict()
+        except:
+            abort(Response("Unable to create review"))
     else:
         return form.errors
 
@@ -50,7 +54,7 @@ def edit_a_review(id):
         #edited_review = Review.query.filter(Review.id == id).first()
         edited_review = Review.query.get(id)
         edited_review.content = form.data['content']
-            # Include the updated + created at? to show time review was made
+
         db.session.commit()
         return edited_review.to_dict()
     else:
