@@ -6,7 +6,7 @@ import './Header.css'
 import LoginFormModal from './LoginFormModal';
 import LoggedInNav from '../LoggedInNav';
 import { useHistory } from 'react-router';
-import User from '../User';
+
 
 
 export default function Header() {

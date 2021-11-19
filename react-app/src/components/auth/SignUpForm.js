@@ -37,9 +37,12 @@ const SignUpForm = () => {
     }
 
     if(typeof username !== "undefined") {
+      if(username.length < 5 || username.length > 25)
+     {
         validationErrors["username"] = "Please enter a valid username, username must only contain alphanumeric characters and must be between the length of 5 and 25 characters"
-      
+     }
     }
+    
     if(!password ) {
       validationErrors["password"] = "Please enter a valid password"
     }
