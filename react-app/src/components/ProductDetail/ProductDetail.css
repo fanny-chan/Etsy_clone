@@ -71,6 +71,10 @@ button {
 .edit-review-btn:hover{
     background: rgb(226, 225, 225);
 }
+#edit-review-form:hover{
+    background: rgb(226, 225, 225);
+
+}
 .image-container {
     display: flex;
     align-items: center;
