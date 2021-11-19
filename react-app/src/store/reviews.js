@@ -52,7 +52,6 @@ export const thunkCreateReview = reviewDetails => async (dispatch) => {
         },
         body: JSON.stringify(reviewDetails)
     }) 
-    console.log(response)
     if (response.ok) {
         const newReviewObj = await response.json();
         dispatch(addReview(newReviewObj));

@@ -47,7 +47,6 @@ export default function Review({review}) {
         };
         dispatch(thunkEditReviewDetails(updatedContent))
     };
-    console.log("-----review---", review.id)
     
     return (
         <div>
