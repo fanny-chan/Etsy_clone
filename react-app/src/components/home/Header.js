@@ -65,6 +65,7 @@ export default function Header() {
                         {carts.reduce((acc,item) => {
                             return acc + item.quantity
                         },0)}
+                        {/* {carts[0].quantity} */}
                         
                     </div>
                     

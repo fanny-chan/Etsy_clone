@@ -15,7 +15,7 @@ def get_cart_items():
     # return {cart_item.id:cart_item.to_dict() for cart_item in cart_items}
 
 # add item to cart
-@cart_routes.route('/add-product', methods=['POST'])
+@cart_routes.route('/add-product', methods=['POST','PUT'])
 def add_cart_item():
     form = addProductToCartForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -32,7 +32,8 @@ def add_cart_item():
             return new_cart_item.to_dict()
         else:
             # item = query.first()
-            query.quantity = form.data['quantity']
+            query.quantity += form.data['quantity']
+            db.session.commit()
             return query.to_dict()
 
 #edit a cart_product
