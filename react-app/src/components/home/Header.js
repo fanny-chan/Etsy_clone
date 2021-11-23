@@ -1,18 +1,21 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './Header.css'
 import LoginFormModal from './LoginFormModal';
 import LoggedInNav from '../LoggedInNav';
 import { useHistory } from 'react-router';
+import { thunkGetCarts } from '../../store/carts';
 
 
 
 export default function Header() {
+    
     const history =useHistory();
     const user = useSelector((state) => state.session.user);
     const carts = useSelector((state) => state.carts)
+    const dispatch = useDispatch();
     const handleHome = () => {
         history.push('/')
     }
@@ -23,6 +26,12 @@ export default function Header() {
 
         
     }
+
+    useEffect(() => {
+        if(user) 
+        {dispatch(thunkGetCarts(user?.id))}
+    },[])
+
     return (
         <>
             <div className="main-nav-wrap">
@@ -65,7 +74,6 @@ export default function Header() {
                         {carts.reduce((acc,item) => {
                             return acc + item.quantity
                         },0)}
-                        {/* {carts[0].quantity} */}
                         
                     </div>
                     
