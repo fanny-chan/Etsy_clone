@@ -13,9 +13,9 @@ https://craftsi.herokuapp.com/
 
 ### Database: PostgreSQL
 
-### Backend: Fkask, SQLAlchemy, Python
+### Backend: Flask, SQLAlchemy, Python
 
-### Frontend: React, Reduc, Javascript, CSS, HTML
+### Frontend: React, Redux, Javascript, CSS, HTML
 
 ## Features
 1. User Authentication
